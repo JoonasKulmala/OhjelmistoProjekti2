@@ -21,14 +21,15 @@ public class RestController {
 	
 	@Autowired
 	private RaspberryRepository repository;
-	@Autowired
-	private Raspberry raspberry;
-	
+	//@Autowired
+	//private Raspberry raspberry;
+
+	//käytetään get-metodia laitteiden hakuun
 	@RequestMapping(value="/results", method = RequestMethod.GET)
 	public @ResponseBody List<Raspberry>getResults(){
 		return (List<Raspberry>) repository.findAll();
 	}
-	
+	//Käytetään post-metodia uuden laitteen lisäämiseen
 	@RequestMapping(value="/results", method = RequestMethod.POST)
 	public @ResponseBody Raspberry addNewDevice(@RequestBody Raspberry raspberry) {
 		repository.save(raspberry);

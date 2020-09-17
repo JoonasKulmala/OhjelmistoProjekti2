@@ -16,6 +16,14 @@ public class Raspberry {
 	private Long id;
 	private String MACaddr;
 	private String location;
+
+	public Raspberry(){
+		
+	}
+
+	public Raspberry(String location){
+		this.location = location;
+	}
 	
 	public Raspberry(String MACaddr, String location) {
 		this.MACaddr = MACaddr;

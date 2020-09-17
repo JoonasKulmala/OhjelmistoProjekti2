@@ -29,6 +29,9 @@ public class Esp32serverApplication {
 			Raspberry suomenlinna = new Raspberry( "00:0a:95:9d:68:16", "Suomenlinna");
 			Raspberry sibeliusmonumentti = new Raspberry("11:0a:95:3d:69:22", "Sibeliusmonumentti");
 			Raspberry rautatieasema = new Raspberry("32:5a:15:5d:65:16", "Rautatieasema");
+			raspberryRepository.save(suomenlinna);
+			raspberryRepository.save(sibeliusmonumentti);
+			raspberryRepository.save(rautatieasema);
 			
 			log.info("Fetching data");
 			for(Raspberry raspberry: raspberryRepository.findAll()) {
