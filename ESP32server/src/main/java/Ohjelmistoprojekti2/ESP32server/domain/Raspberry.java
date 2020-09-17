@@ -13,12 +13,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Raspberry {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Long id;
 	private String MACaddr;
 	private String location;
 
 	public Raspberry(){
-		
+
 	}
 
 	public Raspberry(String location){
