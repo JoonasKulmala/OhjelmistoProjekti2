@@ -3,17 +3,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Raspberry {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
+
 	private Long id;
 	private String MACaddr;
 	private String location;
@@ -28,7 +23,6 @@ public class Raspberry {
 	
 	public Raspberry(String MACaddr, String location) {
 		this.MACaddr = MACaddr;
-		//this.id = id;
 		this.location = location;
 	}
 
