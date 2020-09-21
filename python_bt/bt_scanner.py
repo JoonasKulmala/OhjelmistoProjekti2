@@ -3,6 +3,7 @@ import schedule
 import time
 import json
 import urllib3
+import requests
 
 
 def scan():
@@ -22,15 +23,13 @@ def scan():
             bt_devices.append(item)
 
     print(bt_devices)
-    json_data = json.dumps(bt_devices).encode('utf-8')
+    json_data = json.dumps(bt_devices)  # .encode('utf-8')
     print(json_data)
-    # Kommattu pois jottei tule virheitä kun bäkki ei vielä pystyssä
-    # Kun bäkki pystyssä lisää tuo .encode('utf-8) ton json_data perään
-    http = urllib3.PoolManager()
-    req = http.request(
-        'POST',
-        'raspberrybackend.herokuapp.com/results',
-        body=json_data,
-        headers={'Content-Type': 'application/json'}
-    )
-    json.loads(req.data.decode('utf-8'))['json']
+
+    url = 'https://raspberrybackend.herokuapp.com/results'
+    objToSend = {'location': 'LenninKone', 'foundDevices': len(
+        bt_devices)*3, 'macaddr': '00:0a:95:9d:69:69'}
+
+    send = requests.post(url, json=objToSend)
+
+    print(send.text)
