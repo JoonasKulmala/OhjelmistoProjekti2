@@ -6,10 +6,12 @@ import axios from 'axios'
 export default function App() {
   const [places, setPlaces] = useState([])
 
+  // satunnainen numero välillä 0-100
   const giveRandomNumber = () => {
     return String(Math.floor(Math.random() * 101))
   }
 
+  // valitsee Markerille värin 
   const pickPinColor = (bt_connections) => {
     if (bt_connections < 25) {
       return 'green'
@@ -21,24 +23,13 @@ export default function App() {
   }
 
   useEffect(() => {
-    // axios
-    //   .get('http://open-api.myhelsinki.fi/v1/places/')
-    //   .then(res => {
-    //     // console.log('data: ', res.data.data)
-    //     setPlaces(res.data.data.slice(0, 50))
-    //   })
-    
+    // React Nativea käytettäessä urlin oltava 10.0.2.2:<portti> tavallisen localhost:<portti> sijaan
     axios
       .get('http://10.0.2.2:3001/places')
       .then(res => {
         setPlaces(res.data)
       })
   }, [])
-
-
-  const handleMarkerPress = (event) => {
-    console.log(event)
-  }
 
   return (
     <View style={styles.container}>
@@ -53,11 +44,9 @@ export default function App() {
         {places.length !== 0
           ? places.map(place => (
             <Marker
-              onPress={handleMarkerPress}
               key={place.id}
-              title={place.name.fi}
+              title={place.name}
               pinColor={pickPinColor(giveRandomNumber())}
-              // description={giveRandomNumber()}
               coordinate={{
                 latitude: place.location.lat,
                 longitude: place.location.lon
