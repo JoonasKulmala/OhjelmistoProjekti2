@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios'
 
@@ -21,13 +21,20 @@ export default function App() {
   }
 
   useEffect(() => {
+    // axios
+    //   .get('http://open-api.myhelsinki.fi/v1/places/')
+    //   .then(res => {
+    //     // console.log('data: ', res.data.data)
+    //     setPlaces(res.data.data.slice(0, 50))
+    //   })
+    
     axios
-      .get('http://open-api.myhelsinki.fi/v1/places/')
+      .get('http://10.0.2.2:3001/places')
       .then(res => {
-        // console.log('data: ', res.data.data)
-        setPlaces(res.data.data.slice(0, 50))
+        setPlaces(res.data)
       })
   }, [])
+
 
   const handleMarkerPress = (event) => {
     console.log(event)
@@ -60,7 +67,6 @@ export default function App() {
           : null}
       </MapView>
     </View>
-    
   );
 }
 
