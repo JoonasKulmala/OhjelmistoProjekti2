@@ -23,7 +23,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    // React Nativea käytettäessä urlin oltava 10.0.2.2:<portti> tavallisen localhost:<portti> sijaan
+    // ilmeisesti android-emulaattoria käytettäessä urlin oltava mallia 10.0.2.2:<portti>
     axios
       .get('http://10.0.2.2:3001/places')
       .then(res => {
