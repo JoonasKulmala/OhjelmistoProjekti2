@@ -12,6 +12,7 @@ public class Raspberry {
 	private Long id;
 	private String MACaddr;
 	private String location;
+	private int foundDevices;
 
 	public Raspberry(){
 
@@ -21,9 +22,10 @@ public class Raspberry {
 		this.location = location;
 	}
 	
-	public Raspberry(String MACaddr, String location) {
+	public Raspberry(String MACaddr, String location, int foundDevices) {
 		this.MACaddr = MACaddr;
 		this.location = location;
+		this.foundDevices = foundDevices;
 	}
 
 	public Long getId() {
@@ -48,6 +50,14 @@ public class Raspberry {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public int getFoundDevices() {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
 	}
 
 	@Override
