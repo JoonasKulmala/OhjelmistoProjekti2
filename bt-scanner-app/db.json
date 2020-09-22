@@ -7,7 +7,11 @@
         "lat": 60.2011301,
         "lon": 24.9348275
       },
-      "bt-devices": 26
+      "bt_devices": {
+        "latest": 26,
+        "hour_ago": 20,
+        "two_hours_ago": 22
+      }
     },
     {
       "id": 2, 
@@ -16,7 +20,11 @@
         "lat": 60.1701801,
         "lon": 24.9419037
       },
-      "bt-devices": 55
+      "bt_devices": {
+        "latest": 55,
+        "hour_ago": 107,
+        "two_hours_ago": 60
+      }
     }
   ]
 }

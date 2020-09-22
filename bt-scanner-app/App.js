@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios'
+import PlaceInfo from './components/PlaceInfo';
 
 export default function App() {
   const [places, setPlaces] = useState([])
+  const [infoVisible, setInfoVisible] = useState(false)
+  const [activePlace, setActivePlace] = useState(null)
 
   // satunnainen numero välillä 0-100
   const giveRandomNumber = () => {
@@ -21,6 +24,8 @@ export default function App() {
       return 'red'
     }
   }
+
+  // axios.get('https://raspberrybackend.herokuapp.com/results').then(res => console.log(res.data))
 
   useEffect(() => {
     // ilmeisesti android-emulaattoria käytettäessä urlin oltava mallia 10.0.2.2:<portti>
@@ -40,10 +45,16 @@ export default function App() {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421
         }}
+
       >
         {places.length !== 0
           ? places.map(place => (
             <Marker
+              onPress={() => {
+                setActivePlace(place)
+                console.log(activePlace)
+                setInfoVisible(!infoVisible)
+              }}
               key={place.id}
               title={place.name}
               pinColor={pickPinColor(giveRandomNumber())}
@@ -55,6 +66,9 @@ export default function App() {
           ))
           : null}
       </MapView>
+      {infoVisible ?
+        <PlaceInfo place={activePlace} />
+        : null}
     </View>
   );
 }
