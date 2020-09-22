@@ -45,12 +45,13 @@ export default function App() {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421
         }}
-
       >
         {places.length !== 0
           ? places.map(place => (
             <Marker
               onPress={() => {
+                /* asetetaan valitun kohteen tiedot muuttujaan activePlace, jotta
+                ne saadaan siirrettyä helposti PlaceInfo-komponentille */
                 setActivePlace(place)
                 console.log(activePlace)
                 setInfoVisible(!infoVisible)
@@ -66,6 +67,9 @@ export default function App() {
           ))
           : null}
       </MapView>
+      
+      {/* Tilan infoVisible ollessa true, renderöidään PlaceInfo-komponentti, joka näyttää 
+      tietoa valitusta kohteesta */}
       {infoVisible ?
         <PlaceInfo place={activePlace} />
         : null}
