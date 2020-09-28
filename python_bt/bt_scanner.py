@@ -31,11 +31,11 @@ def scan():
     print(readable)
 
 
-"""
+
     url = 'https://raspberrybackend.herokuapp.com/results'
     objToSend = {'location': 'LenninKone', 'foundDevices': len(
-        bt_devices)*3, 'macaddr': '00:0a:95:9d:69:69', 'timestamp': ts}
+        bt_devices)*3, 'macaddr': '00:0a:95:9d:69:69', 'date': ts}
 
     send = requests.post(url, json=objToSend)
 
-    print(send.text)"""
+    print(send.text)
