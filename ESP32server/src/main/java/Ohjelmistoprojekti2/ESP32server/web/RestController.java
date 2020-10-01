@@ -33,16 +33,4 @@ public class RestController {
 		repository.save(raspberry);
 		return raspberry;
 	}
-	
-	@RequestMapping(value = "results/{id}")
-    public String editRaspberry(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("raspberry", repository.findById(id));
-        return "results";
-	}
-	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Raspberry raspberry) {
-        repository.save(raspberry);
-        return "results";
-    }
 }
