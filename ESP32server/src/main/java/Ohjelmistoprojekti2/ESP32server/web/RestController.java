@@ -37,7 +37,6 @@ public class RestController {
 	@RequestMapping(value = "results/{id}")
     public String editRaspberry(@PathVariable("id") Long id, Model model) {
         model.addAttribute("raspberry", repository.findById(id));
-        model.addAttribute("category", repository.findAll());
         return "results";
 	}
 	
