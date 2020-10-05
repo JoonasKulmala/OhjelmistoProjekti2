@@ -1,7 +1,6 @@
 package Ohjelmistoprojekti2.ESP32server.web;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
 
 import Ohjelmistoprojekti2.ESP32server.domain.Raspberry;
 import Ohjelmistoprojekti2.ESP32server.domain.RaspberryRepository;
@@ -21,8 +21,6 @@ public class RestController {
 	
 	@Autowired
 	private RaspberryRepository repository;
-	//@Autowired
-	//private Raspberry raspberry;
 
 	//käytetään get-metodia laitteiden hakuun
 	@RequestMapping(value="/results", method = RequestMethod.GET)
@@ -35,5 +33,4 @@ public class RestController {
 		repository.save(raspberry);
 		return raspberry;
 	}
-	
 }

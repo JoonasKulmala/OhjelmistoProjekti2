@@ -24,14 +24,14 @@ public class Esp32serverApplication {
 	public CommandLineRunner productDemo(RaspberryRepository raspberryRepository) {
 		return(args) ->{
 			log.info("Saving information");
-			Raspberry suomenlinna = new Raspberry( "00:0a:95:9d:68:16", "Suomenlinna", 5);
-			Raspberry sibeliusmonumentti = new Raspberry("11:0a:95:3d:69:22", "Sibelius-monumentti", 25);
-			Raspberry rautatieasema = new Raspberry("32:5a:15:5d:65:16", "Rautatieasema", 64);
-			Raspberry presidentinlinna = new Raspberry("54:1a:22:5d:65:88", "Presidentinlinna", 2);
-			Raspberry temppeliaukionKirkko = new Raspberry("01:0a:25:5a:75:16", "Temppeliaukion kirkko", 210);
-			Raspberry helsinginTuomiokirkko = new Raspberry("11:1a:11:1d:11:11", "Helsingin tuomiokirkko", 45);
-			Raspberry kauppatori = new Raspberry("22:6a:33:1a:65:16", "Kauppatori", 89);
-			Raspberry senaatintori = new Raspberry("98:7a:65:4d:32:10", "Senaatintori", 52);
+			Raspberry suomenlinna = new Raspberry( "00:0a:95:9d:68:16", "Suomenlinna", 5, "Mon Sep 28 10:54:43 2020");
+			Raspberry sibeliusmonumentti = new Raspberry("11:0a:95:3d:69:22", "Sibelius-monumentti", 25, "Mon Sep 28 10:54:43 2020");
+			Raspberry rautatieasema = new Raspberry("32:5a:15:5d:65:16", "Rautatieasema", 64, "Mon Sep 28 10:54:43 2020");
+			Raspberry presidentinlinna = new Raspberry("54:1a:22:5d:65:88", "Presidentinlinna", 2, "Mon Sep 28 10:54:43 2020");
+			Raspberry temppeliaukionKirkko = new Raspberry("01:0a:25:5a:75:16", "Temppeliaukion kirkko", 210, "Mon Sep 28 10:54:43 2020");
+			Raspberry helsinginTuomiokirkko = new Raspberry("11:1a:11:1d:11:11", "Helsingin tuomiokirkko", 45, "Mon Sep 28 10:54:43 2020");
+			Raspberry kauppatori = new Raspberry("22:6a:33:1a:65:16", "Kauppatori", 89, "Mon Sep 28 10:54:43 2020");
+			Raspberry senaatintori = new Raspberry("98:7a:65:4d:32:10", "Senaatintori", 52, "Mon Sep 28 10:54:43 2020");
 
 			raspberryRepository.save(suomenlinna);
 			raspberryRepository.save(sibeliusmonumentti);
