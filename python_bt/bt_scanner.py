@@ -4,6 +4,10 @@ import time
 import calendar
 import json
 import requests
+import urllib.request
+import socket
+
+JSON_URL = 'https://raspberrybackend.herokuapp.com/results'
 
 
 def scan():
@@ -28,14 +32,25 @@ def scan():
 
     ts = time.time()
     readable = time.ctime(ts)
-    print(readable)
+    # print(readable)
+
+    put_url = 'https://raspberrybackend.herokuappa.com/api/raspberries/'
+    location = socket.gethostname()
+    addr = '00:0a:95:9d:69:69'
+
+    objToSend = {'location': location, 'foundDevices': len(
+        bt_devices)*3, 'macaddr': addr, 'date': readable}
+
+    locations = get_locations()
+
+    if location in locations:
+        send = requests.put(put_url + location[id], json=objToSend)
+    else:
+        send = requests.post(JSON_URL, json=objToSend)
+
+    print(send.text)
 
 
-"""
-    url = 'https://raspberrybackend.herokuapp.com/results'
-    objToSend = {'location': 'LenninKone', 'foundDevices': len(
-        bt_devices)*3, 'macaddr': '00:0a:95:9d:69:69', 'timestamp': ts}
-
-    send = requests.post(url, json=objToSend)
-
-    print(send.text)"""
+def get_locations():
+    with urllib.request.urlopen(JSON_URL) as response:
+        return json.loads(response.read())
