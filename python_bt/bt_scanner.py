@@ -19,7 +19,7 @@ def scan():
     print("Devices found: %s" % len(devices))
 
     for item in devices:
-        # print(item)
+        print(item)
         if item in bt_devices:
             pass
         else:
@@ -43,20 +43,20 @@ def scan():
 
     i = 0
     # Käy datan läpi ja lisää laitteet listaan
-    while i < len(data):
+    """while i < len(data):
         locations.append(data[i]['location'])
-        i += 1
+        i += 1"""
 
-    print(i)
     # Tarkistaa löytyykö laitetta jo backendistä, jos löytyy lähettää PUT kutsun jos ei löydy lähettää POST kutsun
     """if location in locations:
         s = str(i)
         send = requests.put(
             'https://raspberrybackend.herokuapp.com/api/raspberries/' + s, json=objToSend)
         pass
-    else:
-        send = requests.post(JSON_URL, json=objToSend)
-    print(send.text)"""
+    else:"""
+
+    send = requests.post(JSON_URL, json=objToSend)
+    print(send.text)
 
 
 def get_locations():  # Haetaan JSON data, jotta voidaan tarkistaa löytyykö laitetta vai ei
