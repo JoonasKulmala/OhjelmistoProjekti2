@@ -30,8 +30,8 @@ def scan():
     readable = time.ctime(ts)
 
     # Hakee laitteen nimen ja käyttää sitä sijaintina
-    location = socket.gethostname()
-    addr = '00:0a:95:9d:69:69'
+    location = "Testi"  # socket.gethostname()
+    addr = '00:0a:95:9d:69:69'  # Laitteen MAC osoite mahdollisesti poistuu
 
     # Lähetettävä JSON objekti
     objToSend = {'location': location, 'foundDevices': len(
@@ -43,19 +43,21 @@ def scan():
 
     i = 0
     # Käy datan läpi ja lisää laitteet listaan
-    """while i < len(data):
+    while i < len(data):
         locations.append(data[i]['location'])
-        i += 1"""
+        i += 1
 
+    print(locations)
     # Tarkistaa löytyykö laitetta jo backendistä, jos löytyy lähettää PUT kutsun jos ei löydy lähettää POST kutsun
-    """if location in locations:
-        s = str(i)
-        send = requests.put(
-            'https://raspberrybackend.herokuapp.com/api/raspberries/' + s, json=objToSend)
-        pass
-    else:"""
+    for location in locations:
+        if location in locations:
+            index = locations.index(location)
+            str_index = str(index)
+            send = requests.put(
+                'https://raspberrybackend.herokuapp.com/api/raspberries/' + str_index, json=objToSend)
+        else:
+            send = requests.post(JSON_URL, json=objToSend)
 
-    send = requests.post(JSON_URL, json=objToSend)
     print(send.text)
 
 

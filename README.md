@@ -1,4 +1,4 @@
-# Dependencies
+# Dependencies for bluetooth scanning
 
     sudo apt install python-dev
     sudo apt install libbluetooth-dev
