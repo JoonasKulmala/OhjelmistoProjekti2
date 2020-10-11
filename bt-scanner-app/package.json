@@ -6,7 +6,18 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "server": "json-server --watch db.json --port 3001"
+    "server": "json-server --watch db.json --port 3001",
+    "test": "jest",
+    "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.'\\.jsx?$": "babel-jest"
+    },
+    "transfromIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ]
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -22,7 +33,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "babel-eslint": "^10.1.0",
     "babel-preset-expo": "~8.1.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-react": "^7.21.4",
+    "jest": "^26.5.2",
+    "jest-expo": "^39.0.0",
     "json-server": "^0.16.1"
   },
   "private": true
