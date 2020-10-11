@@ -30,11 +30,19 @@ const Map = ({ locations, setActiveLocation }) => {
                 longitude: location.location.lon
               }}
             >
+              {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
+              Markerin description-propsissa tämä ei oikein onnistunut */}
+              {/* Händleri aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
               <Callout onPress={() => handleCalloutPress(location)}>
                 <Text>{location.name}</Text>
-                <Text>Devices found:</Text>
-                <Text>{new Date().toUTCString()} - {location.bt_devices.latest}</Text>
-                <Text onPress={() => console.log('Show more info..')}>Show more information</Text>
+                <Text>Devices found: {location.bt_devices.latest}</Text>
+                {/* <Text>{new Date().toUTCString()}</Text> */}
+                <Text 
+                  onPress={() => console.log('Show more info..')}
+                  style={{ color: 'blue' }}
+                >
+                  Show more information
+                </Text>
               </Callout>
             </Marker>
           ))
@@ -46,7 +54,7 @@ const Map = ({ locations, setActiveLocation }) => {
 
 const styles = StyleSheet.create({
   map: {
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('screen').width,
     height: Dimensions.get('window').height
   }
 })
