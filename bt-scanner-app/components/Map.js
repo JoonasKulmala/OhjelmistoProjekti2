@@ -3,7 +3,13 @@ import React from 'react'
 import { Dimensions, StyleSheet, Text } from 'react-native'
 import { pickPinColor } from '../utility'
 
-const Map = ({ places }) => {
+const Map = ({ locations, setActiveLocation }) => {
+  
+  const handleCalloutPress = (place) => {
+    setActiveLocation(place)
+    console.log(place)
+  }
+
   return (
     <MapView
       style={styles.map}
@@ -14,26 +20,29 @@ const Map = ({ places }) => {
         longitudeDelta: 0.0421
       }}
     >
-      {places.length !== 0
-        ? places.map(place => (
+      {locations.length !== 0
+        ? locations.map(location => (
             <Marker 
-              pinColor={pickPinColor(place.bt_devices.latest)}
-              // description={
-              //   `latest: ${place.bt_devices.latest}`
-              // }
-              key={place.id}
-              // title={place.name}
+              pinColor={pickPinColor(location.bt_devices.latest)}
+              key={location.id}
               coordinate={{
-                latitude: place.location.lat,
-                longitude: place.location.lon
+                latitude: location.location.lat,
+                longitude: location.location.lon
               }}
             >
-              <Callout onPress={(asd) => console.log(asd)}>
-                <Text>{place.name}</Text>
-                <Text>Devices found:</Text>
-                <Text>{new Date().toString}</Text>
-                <Text>16:00 - {place.bt_devices.hour_ago}</Text>
-                <Text>15:00 - {place.bt_devices.two_hours_ago}</Text>
+              {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
+              Markerin description-propsissa tämä ei oikein onnistunut */}
+              {/* Händleri aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
+              <Callout onPress={() => handleCalloutPress(location)}>
+                <Text>{location.name}</Text>
+                <Text>Devices found: {location.bt_devices.latest}</Text>
+                {/* <Text>{new Date().toUTCString()}</Text> */}
+                <Text 
+                  onPress={() => console.log('Show more info..')}
+                  style={{ color: 'blue' }}
+                >
+                  Show more information
+                </Text>
               </Callout>
             </Marker>
           ))
@@ -45,7 +54,7 @@ const Map = ({ places }) => {
 
 const styles = StyleSheet.create({
   map: {
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('screen').width,
     height: Dimensions.get('window').height
   }
 })
