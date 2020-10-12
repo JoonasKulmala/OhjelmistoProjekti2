@@ -51,7 +51,7 @@ def scan():
     # Tarkistaa löytyykö laitetta jo backendistä, jos löytyy lähettää PUT kutsun jos ei löydy lähettää POST kutsun
     for location in locations:
         if location in locations:
-            index = locations.index(location)
+            index = locations.index(location + 1)
             str_index = str(index)
             send = requests.put(
                 'https://raspberrybackend.herokuapp.com/api/raspberries/' + str_index, json=objToSend)
