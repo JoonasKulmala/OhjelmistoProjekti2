@@ -13,12 +13,12 @@ export default function PlaceInfo({ place, setActiveLocation }) {
   return (
     <View style={styles.container}>
       <Card style={styles.infoCard}>
-        <Text>{place.name}</Text>
+        {/* <Text testID="placeInfo_name">{place.name}</Text> */}
         <Text></Text>
         <Text>Devices:</Text>
         <Text>latest - {place.bt_devices.latest}</Text>
-        <Text>15:00 - {place.bt_devices.hour_ago}</Text>
-        <Text>14:30 - {place.bt_devices.two_hours_ago}</Text>
+        <Text>15:00 - {place.bt_devices["15:00"]}</Text>
+        <Text>14:30 - {place.bt_devices.["14:30"]}</Text>
         <Text 
           style={{ color: 'red'}}
           onPress={() => setActiveLocation(null)}

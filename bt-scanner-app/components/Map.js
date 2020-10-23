@@ -10,6 +10,43 @@ const Map = ({ locations, setActiveLocation }) => {
     console.log(place)
   }
 
+  const mapStyle = [
+    {
+      "featureType": "administrative",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    }
+  ]
+
   return (
     <MapView
       style={styles.map}
@@ -19,6 +56,8 @@ const Map = ({ locations, setActiveLocation }) => {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       }}
+      customMapStyle={mapStyle}
+      kmlSrc={'../kml.js'}
     >
       {locations.length !== 0
         ? locations.map(location => (
@@ -36,7 +75,7 @@ const Map = ({ locations, setActiveLocation }) => {
               <Callout onPress={() => handleCalloutPress(location)}>
                 <Text>{location.name}</Text>
                 <Text>Devices found: {location.bt_devices.latest}</Text>
-                {/* <Text>{new Date().toUTCString()}</Text> */}
+                <Text>{new Date().toUTCString()}</Text>
                 <Text 
                   onPress={() => console.log('Show more info..')}
                   style={{ color: 'blue' }}
@@ -46,8 +85,7 @@ const Map = ({ locations, setActiveLocation }) => {
               </Callout>
             </Marker>
           ))
-        : null
-      }
+        : null}
     </MapView>
   )
 }
