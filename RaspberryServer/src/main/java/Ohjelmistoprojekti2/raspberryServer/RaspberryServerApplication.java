@@ -10,13 +10,16 @@ import org.springframework.context.annotation.Bean;
 
 import Ohjelmistoprojekti2.raspberryServer.domain.Raspberry;
 import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
+import Ohjelmistoprojekti2.raspberryServer.*;
 
 @SpringBootApplication
 public class RaspberryServerApplication {
-
+	static TimedReset reset;
+	
 	private static final Logger log = LoggerFactory.getLogger(RaspberryServerApplication.class);
 	
 	public static void main(String[] args) {
+		reset.run();
 		SpringApplication.run(RaspberryServerApplication.class, args);
 	}
 	
