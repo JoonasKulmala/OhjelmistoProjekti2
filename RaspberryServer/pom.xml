@@ -8,9 +8,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>Ohjelmistoprojekti2</groupId>
-	<artifactId>ESP32server</artifactId>
+	<artifactId>RaspberryServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ESP32server</name>
+	<name>RaspberryServer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
