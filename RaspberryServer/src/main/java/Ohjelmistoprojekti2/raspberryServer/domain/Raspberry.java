@@ -1,4 +1,4 @@
-package Ohjelmistoprojekti2.ESP32server.domain;
+package Ohjelmistoprojekti2.raspberryServer.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +10,6 @@ public class Raspberry {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 
 	private Long id;
-	private String MACaddr;
 	private String location;
 	private int foundDevices;
 	private String date;
@@ -23,8 +22,7 @@ public class Raspberry {
 		this.location = location;
 	}
 	
-	public Raspberry(String MACaddr, String location, int foundDevices, String date) {
-		this.MACaddr = MACaddr;
+	public Raspberry(String location, int foundDevices, String date) {
 		this.location = location;
 		this.foundDevices = foundDevices;
 		this.date = date;
@@ -36,14 +34,6 @@ public class Raspberry {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getMACaddr() {
-		return MACaddr;
-	}
-
-	public void setMACaddr(String mACaddr) {
-		MACaddr = mACaddr;
 	}
 
 	public String getLocation() {
@@ -72,7 +62,7 @@ public class Raspberry {
 
 	@Override
 	public String toString() {
-		return "Raspberry [id=" + id + ", MACaddr=" + MACaddr + ", location=" + location + ", foundDevices =" +foundDevices+", date =" +date+"]";
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+", date =" +date+"]";
 	}
 
 	

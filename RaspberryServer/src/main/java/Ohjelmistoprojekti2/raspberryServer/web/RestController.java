@@ -1,4 +1,4 @@
-package Ohjelmistoprojekti2.ESP32server.web;
+package Ohjelmistoprojekti2.raspberryServer.web;
 
 import java.util.List;
 
@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
 
-import Ohjelmistoprojekti2.ESP32server.domain.Raspberry;
-import Ohjelmistoprojekti2.ESP32server.domain.RaspberryRepository;
+import Ohjelmistoprojekti2.raspberryServer.domain.Raspberry;
+import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
+
+import org.springframework.ui.Model;
 
 @CrossOrigin
 @Controller
