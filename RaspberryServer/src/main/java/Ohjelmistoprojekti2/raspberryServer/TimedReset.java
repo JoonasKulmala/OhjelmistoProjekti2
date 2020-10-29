@@ -7,10 +7,6 @@ public class TimedReset {
 	final long timeInterval = 10000;
 	RaspberryRepository raspberryRepository;
 
-	public TimedReset() {
-
-	}
-
 	// TimedReset reset = new TimedReset() {
 
 	public void run() {
