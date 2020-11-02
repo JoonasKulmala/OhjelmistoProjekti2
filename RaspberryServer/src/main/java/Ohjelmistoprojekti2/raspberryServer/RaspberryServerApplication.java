@@ -26,10 +26,10 @@ public class RaspberryServerApplication {
 	public CommandLineRunner productDemo(RaspberryRepository raspberryRepository) {
 		return(args) ->{
 			log.info("Saving information");
-			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5, "Mon Sep 28 10:54:43 2020");
-			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25, "Mon Sep 28 10:54:43 2020");
-			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64, "Mon Sep 28 10:54:43 2020");
-			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2, "Mon Sep 28 10:54:43 2020");
+			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5, "Mon Sep 28 10:54:43 2020", "60.1454,24.98814");
+			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25, "Mon Sep 28 10:54:43 2020", "60.182113,24.913422");
+			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64, "Mon Sep 28 10:54:43 2020", "60.171873,24.941422");
+			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2, "Mon Sep 28 10:54:43 2020", "60.168389,24.956342");
 
 			raspberryRepository.save(suomenlinna);
 			raspberryRepository.save(sibeliusmonumentti);
