@@ -6,15 +6,16 @@ import org.springframework.stereotype.Component;
 
 import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
 
-@Component
+//@Component
 public class TimedReset {
-	// 3600000 millisekuntia eli tunti
+	/*// 3600000 millisekuntia eli tunti
 	final long timeInterval = 300000;
 	RaspberryRepository raspberryRepository;
 
 	//@PostConstruct annotaatiolla saadaan käynnistettyä runReset-metodi beanin käynnistyksen jälkeen
-	@PostConstruct
+	//@PostConstruct
 	public void runReset() {
+		
 		while (true) {
 			if(raspberryRepository != null) {
 				raspberryRepository.deleteAll();
@@ -30,6 +31,8 @@ public class TimedReset {
 				e.printStackTrace();
 			}
 		}
-	};
+	};*/
+	
+	
 	
 }
