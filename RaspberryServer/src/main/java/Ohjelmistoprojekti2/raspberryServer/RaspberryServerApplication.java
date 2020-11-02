@@ -19,7 +19,7 @@ public class RaspberryServerApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RaspberryServerApplication.class, args);
-		reset.run();
+		reset.runReset();
 	}
 	
 	@Bean
