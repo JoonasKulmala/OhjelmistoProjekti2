@@ -13,7 +13,6 @@ public class Raspberry {
 	private String location;
 	private int foundDevices;
 	private String date;
-	private String geoLocation;
 
 	public Raspberry(){
 
@@ -23,11 +22,10 @@ public class Raspberry {
 		this.location = location;
 	}
 	
-	public Raspberry(String location, int foundDevices, String date, String geoLocation) {
+	public Raspberry(String location, int foundDevices, String date) {
 		this.location = location;
 		this.foundDevices = foundDevices;
 		this.date = date;
-		this.geoLocation = geoLocation;
 	}
 
 	public Long getId() {
@@ -58,18 +56,10 @@ public class Raspberry {
 		return date;
 	}
 
-	public void setDate(String date){
+	public void setDate(){
 		this.date = date;
 	}
-	
-	public String getGeoLocation() {
-		return geoLocation;
-	}
-	
-	public void setGeoLocation(String geoLocation) {
-		this.geoLocation = geoLocation;
-	}
-	
+
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+", date =" +date+"]";
