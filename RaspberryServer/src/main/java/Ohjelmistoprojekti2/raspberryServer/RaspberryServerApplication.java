@@ -7,7 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.DataRetrievalFailureException;
 
+import Ohjelmistoprojekti2.raspberryServer.domain.Date;
+import Ohjelmistoprojekti2.raspberryServer.domain.DateRepository;
 import Ohjelmistoprojekti2.raspberryServer.domain.Raspberry;
 import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
 
@@ -47,18 +50,27 @@ public class RaspberryServerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository raspberryRepository) {
+	public CommandLineRunner productDemo(RaspberryRepository raspberryRepository, DateRepository dRepo) {
 		return(args) ->{
 			log.info("Saving information");
-			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5, "Mon Sep 28 10:54:43 2020");
-			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25, "Mon Sep 28 10:54:43 2020");
-			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64, "Mon Sep 28 10:54:43 2020");
-			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2, "Mon Sep 28 10:54:43 2020");
+			
+			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5);
+			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25);
+			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64);
+			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2);
 
 			raspberryRepository.save(suomenlinna);
 			raspberryRepository.save(sibeliusmonumentti);
 			raspberryRepository.save(rautatieasema);
 			raspberryRepository.save(presidentinlinna);
+			
+			Date date1 = new Date("Mon Sep 28 10:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
+			Date date2 = new Date("Mon Sep 28 11:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
+			Date date3 = new Date("Mon Sep 28 12:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
+			
+			dRepo.save(date1);
+			dRepo.save(date2);
+			dRepo.save(date3);
 			
 			log.info("Fetching data");
 			for(Raspberry raspberry: raspberryRepository.findAll()) {

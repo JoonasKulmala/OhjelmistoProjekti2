@@ -1,8 +1,14 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Raspberry {
@@ -12,7 +18,10 @@ public class Raspberry {
 	private Long id;
 	private String location;
 	private int foundDevices;
-	private String date;
+	
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "date")
+	private List<Date>date;
 
 	public Raspberry(){
 
@@ -22,10 +31,9 @@ public class Raspberry {
 		this.location = location;
 	}
 	
-	public Raspberry(String location, int foundDevices, String date) {
+	public Raspberry(String location, int foundDevices) {
 		this.location = location;
 		this.foundDevices = foundDevices;
-		this.date = date;
 	}
 
 	public Long getId() {
@@ -52,11 +60,11 @@ public class Raspberry {
 		this.foundDevices = foundDevices;
 	}
 
-	public String getDate(){
+	public List<Date> getDate(){
 		return date;
 	}
 
-	public void setDate(){
+	public void setDate(List<Date> date){
 		this.date = date;
 	}
 
