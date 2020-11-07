@@ -83,7 +83,7 @@ const Map = ({ locations, setActiveLocation }) => {
                 <Callout
                   onPress={() => handleCalloutPress(location)}
                 >
-                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
+                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 aaaaaaaaaa*/}
                   <Text>{location.name}</Text>
                   <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
                   <Text 
