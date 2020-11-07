@@ -1,14 +1,12 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.List;
 
 @Entity
 public class Date {
@@ -17,20 +15,18 @@ public class Date {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long dateId;
 	private String date;
-	
-	@ManyToOne
-	@JsonManagedReference
-	@JoinColumn(name = "id")
-	private Raspberry raspberry;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "date")
+	@JsonBackReference
+	private List<DateList> dateList;
 	
 	public Date() {
 		super();
 	}
 	
-	public Date(String date, Raspberry raspberry) {
+	public Date(String date) {
 		super();
 		this.date = date;
-		this.raspberry = raspberry;
 	}
 
 	public Long getDateId() {
@@ -49,12 +45,12 @@ public class Date {
 		this.date = date;
 	}
 
-	public Raspberry getRaspberry() {
-		return raspberry;
+	public List<DateList> getDateList() {
+		return dateList;
 	}
 
-	public void setRaspberry(Raspberry raspberry) {
-		this.raspberry = raspberry;
+	public void setDateList(List<DateList> dateList) {
+		this.dateList = dateList;
 	}
 
 	@Override

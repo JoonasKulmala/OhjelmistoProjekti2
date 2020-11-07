@@ -1,5 +1,6 @@
 package Ohjelmistoprojekti2.raspberryServer;
 
+import Ohjelmistoprojekti2.raspberryServer.domain.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,11 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataRetrievalFailureException;
-
-import Ohjelmistoprojekti2.raspberryServer.domain.Date;
-import Ohjelmistoprojekti2.raspberryServer.domain.DateRepository;
-import Ohjelmistoprojekti2.raspberryServer.domain.Raspberry;
-import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
 
 @SpringBootApplication
 public class RaspberryServerApplication {
@@ -50,30 +46,30 @@ public class RaspberryServerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository raspberryRepository, DateRepository dRepo) {
+	public CommandLineRunner productDemo(RaspberryRepository rRepo, DateRepository dRepo, DateListRepository dLRepo) {
 		return(args) ->{
 			log.info("Saving information");
+
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020"));
+			dRepo.save(new Date("Mon Sep 28 11:54:43 2020"));
+			dRepo.save(new Date("Mon Sep 28 12:54:43 2020"));
+
+			dLRepo.save(new DateList(dRepo.findById((long) 1).get()));
+			dLRepo.save(new DateList(dRepo.findById((long) 2).get()));
+			dLRepo.save(new DateList(dRepo.findById((long) 3).get()));
 			
-			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5);
-			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25);
-			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64);
-			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2);
+			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5, dLRepo.findById((long) 4).get());
+			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25, dLRepo.findById((long) 4).get());
+			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64, dLRepo.findById((long) 4).get());
+			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2, dLRepo.findById((long) 4).get());
 
 			raspberryRepository.save(suomenlinna);
 			raspberryRepository.save(sibeliusmonumentti);
 			raspberryRepository.save(rautatieasema);
 			raspberryRepository.save(presidentinlinna);
 			
-			Date date1 = new Date("Mon Sep 28 10:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
-			Date date2 = new Date("Mon Sep 28 11:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
-			Date date3 = new Date("Mon Sep 28 12:54:43 2020", raspberryRepository.findByLocation("Suomenlinna").get(0));
-			
-			dRepo.save(date1);
-			dRepo.save(date2);
-			dRepo.save(date3);
-			
 			log.info("Fetching data");
-			for(Raspberry raspberry: raspberryRepository.findAll()) {
+			for(Raspberry raspberry: rRepo.findAll()) {
 				log.info(raspberry.toString());
 			}
 		};

@@ -1,14 +1,10 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Raspberry {
@@ -19,25 +15,23 @@ public class Raspberry {
 	private String location;
 	private int foundDevices;
 	
-	@JsonBackReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "date")
-	private List<Date>date;
+	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name = "dateListId" )
+	private DateList dateList;
 
 	public Raspberry(){
 
 	}
-
-	public Raspberry(String location){
-		this.location = location;
-	}
 	
-	public Raspberry(String location, int foundDevices) {
+	public Raspberry(String location, int foundDevices, DateList dateList) {
 		this.location = location;
 		this.foundDevices = foundDevices;
+		this.dateList = dateList;
 	}
 
 	public Long getId() {
-		return id;
+		 return id;
 	}
 
 	public void setId(Long id) {
@@ -52,7 +46,7 @@ public class Raspberry {
 		this.location = location;
 	}
 
-	public int getFoundDevices() {
+	public int getFoundDevices()  {
 		return foundDevices;
 	}
 
@@ -60,17 +54,9 @@ public class Raspberry {
 		this.foundDevices = foundDevices;
 	}
 
-	public List<Date> getDate(){
-		return date;
-	}
-
-	public void setDate(List<Date> date){
-		this.date = date;
-	}
-
 	@Override
 	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+", date =" +date+"]";
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+"]";
 	}
 
 	
