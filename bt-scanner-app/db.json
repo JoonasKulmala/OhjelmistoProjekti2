@@ -7,11 +7,17 @@
         "lat": 60.2011301,
         "lon": 24.9348275
       },
-      "bt_devices": {
-        "latest": 26,
-        "hour_ago": 20,
-        "two_hours_ago": 22
-      }
+      "bt_devices": [
+        { 
+          "latest": 26
+        },
+        {
+          "15:00": 20
+        },
+        {
+          "14:30": 22
+        }
+      ]
     },
     {
       "id": 2, 
@@ -20,11 +26,55 @@
         "lat": 60.1701801,
         "lon": 24.9419037
       },
-      "bt_devices": {
-        "latest": 55,
-        "hour_ago": 107,
-        "two_hours_ago": 60
-      }
+      "bt_devices": [
+        { 
+          "latest": 55
+        },
+        {
+          "15:00": 107
+        },
+        {
+          "14:30": 60
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Narinkkatori",
+      "location": {
+        "lat": 60.1696367,
+        "lon": 24.9350034
+      },
+      "bt_devices": [
+        { 
+          "latest": 40
+        },
+        {
+          "15:00": 30
+        },
+        {
+          "14:30": 33
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Töölönlahden tapahtumapuisto",
+      "location": {
+        "lat": 60.174866,
+        "lon": 24.9331779
+      },
+      "bt_devices": [
+        { 
+          "latest": 6
+        },
+        {
+          "15:00": 7
+        },
+        {
+          "14:30": 3
+        }
+      ]
     }
   ]
 }
