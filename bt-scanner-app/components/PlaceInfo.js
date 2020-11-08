@@ -11,8 +11,8 @@ export default function PlaceInfo({ place, setActiveLocation }) {
 
   return (
     <View style={styles.container}>
-      <Card style={styles.infoCard}>
-        {/* <Text testID="placeInfo_name">{place.name}</Text> */}
+      <Card>
+        <Text testID="placeInfo_name">{place.name}</Text>
         <Text></Text>
         <Text>Devices:</Text>
         <Text testID="latestScan">{formattedDate()} - {place.bt_devices[0].latest}</Text>
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: '30%',
-    width: Dimensions.get('screen').width,
+    left: '5%',
+    width: (Dimensions.get('screen').width * 0.90)
   },
 })

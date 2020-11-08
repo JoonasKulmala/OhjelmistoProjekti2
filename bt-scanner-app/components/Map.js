@@ -76,15 +76,16 @@ const Map = ({ locations, setActiveLocation }) => {
                   latitude: location.location.lat,
                   longitude: location.location.lon
                 }}
-              >
+                onPress={() => handleCalloutPress(location)}
+              />
                 {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
                 Markerin description-propsissa tämä ei oikein onnistunut */}
                 {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
-                <Callout
+                {/* <Callout
                   onPress={() => handleCalloutPress(location)}
-                >
-                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 aaaaaaaaaa*/}
-                  <Text>{location.name}</Text>
+                > */}
+                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
+                  {/* <Text>{location.name}</Text>
                   <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
                   <Text 
                     onPress={() => console.log('Show more info..')}
@@ -92,8 +93,8 @@ const Map = ({ locations, setActiveLocation }) => {
                   >
                     Show more information
                   </Text>
-                </Callout>
-              </Marker>
+                </Callout> */}
+              {/* </Marker> */}
               {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {showRadius ?
                 <Circle 
