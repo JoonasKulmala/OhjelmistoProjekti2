@@ -5,6 +5,7 @@ import { pickPinColor, formattedDate } from '../utility'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
+  const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
 
   const handleCalloutPress = (location) => {
     setActiveLocation(location)
@@ -13,6 +14,11 @@ const Map = ({ locations, setActiveLocation }) => {
 
   const toggleRadius = () => {
     setShowRadius(!showRadius)
+    if (radiusButtonTitle === 'show radius') {
+      setRadiusButtonTitle('hide radius')
+    } else if (radiusButtonTitle === 'hide radius') {
+      setRadiusButtonTitle('show radius')
+    }
   }
   
   // Kartasta hieman selkeämpi
@@ -112,7 +118,7 @@ const Map = ({ locations, setActiveLocation }) => {
       <View style={styles.radiusButton}>
         <Button 
           onPress={toggleRadius}
-          title="show radius" 
+          title={radiusButtonTitle}
         />
       </View>
     </View>
