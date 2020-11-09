@@ -17,7 +17,7 @@ public class Raspberry {
 	private String geoLocation;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
-	private List<Date> date;
+	private List<TimeStamp> timeStamp;
 
 	public Raspberry(){
 		super();
@@ -30,11 +30,11 @@ public class Raspberry {
 		this.geoLocation = geoLocation;
 	}
 	
-	public Raspberry(String location, int foundDevices, String geoLocation, List<Date> date) {
+	public Raspberry(String location, int foundDevices, String geoLocation, List<TimeStamp> timeStamp) {
 		this.location = location;
 		this.foundDevices = foundDevices;
 		this.geoLocation = geoLocation;
-		this.date = date;
+		this.timeStamp = timeStamp;
 	}
 
 	public Long getId() {
@@ -69,12 +69,12 @@ public class Raspberry {
 		this.geoLocation = geoLocation;
 	}
 
-	public List<Date> getDate() {
-		return date;
+	public List<TimeStamp> getTimeStamp() {
+		return timeStamp;
 	}
 
-	public void setDate(List<Date> date) {
-		this.date = date;
+	public void setTimeStamp(List<TimeStamp> timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	@Override

@@ -9,24 +9,24 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 @Entity
-public class Date {
+public class TimeStamp {
 	
 	@Id//Annotaatioiden avulla luodaan jokaiselle uudelle ajalle oma id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long dateId;
-	private String date;
+	private String timeStamp;
 
 	@JsonBackReference
 	@ManyToOne
 	private Raspberry refDateRasp;
 	
-	public Date() {
+	public TimeStamp() {
 		super();
 	}
 	
-	public Date(String date, Raspberry refDateRasp) {
+	public TimeStamp(String date, Raspberry refDateRasp) {
 		super();
-		this.date = date;
+		this.timeStamp = date;
 		this.refDateRasp = refDateRasp;
 	}
 
@@ -39,11 +39,11 @@ public class Date {
 	}
 
 	public String getDate() {
-		return date;
+		return timeStamp;
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		this.timeStamp = date;
 	}
 
 	public Raspberry getRefDateRasp() {
@@ -56,6 +56,6 @@ public class Date {
 
 	@Override
 	public String toString() {
-		return "Date [dateId=" + dateId + ", date=" + date + "]";
+		return "Date [dateId=" + dateId + ", date=" + timeStamp + "]";
 	}
 }

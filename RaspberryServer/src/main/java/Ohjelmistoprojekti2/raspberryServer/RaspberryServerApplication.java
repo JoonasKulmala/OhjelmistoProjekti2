@@ -8,9 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.dao.DataRetrievalFailureException;
-
-import java.util.List;
 
 @SpringBootApplication
 public class RaspberryServerApplication {
@@ -48,9 +45,12 @@ public class RaspberryServerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository rRepo, DateRepository dRepo) {
+	public CommandLineRunner productDemo(RaspberryRepository rRepo, TimeStampRepository tRepo) {
 		return(args) ->{
 			log.info("Saving information");
+			
+			rRepo.deleteAll();
+			tRepo.deleteAll();
 
 			rRepo.save(new Raspberry("Suomenlinna", 5, "60.1454,24.98814"));
 			rRepo.save(new Raspberry("Sibelius-monumentti", 25, "60.182113,24.913422"));
@@ -58,18 +58,18 @@ public class RaspberryServerApplication {
 			rRepo.save(new Raspberry("Presidentinlinna", 2, "60.168389,24.956342"));
 
 
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", rRepo.findById((long) 1).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", rRepo.findById((long) 1).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 13:54:43 2020", rRepo.findById((long) 1).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", rRepo.findById((long) 2).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", rRepo.findById((long) 2).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", rRepo.findById((long) 3).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", rRepo.findById((long) 3).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", rRepo.findById((long) 4).get()));
+			tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", rRepo.findById((long) 4).get()));
 			
 			log.info("Fetching data");
 			for(Raspberry raspberry: rRepo.findAll()) {
