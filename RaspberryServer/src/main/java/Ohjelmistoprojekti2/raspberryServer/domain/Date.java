@@ -16,17 +16,18 @@ public class Date {
 	private Long dateId;
 	private String date;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "date")
 	@JsonBackReference
-	private List<DateList> dateList;
+	@ManyToOne
+	private Raspberry refDateRasp;
 	
 	public Date() {
 		super();
 	}
 	
-	public Date(String date) {
+	public Date(String date, Raspberry refDateRasp) {
 		super();
 		this.date = date;
+		this.refDateRasp = refDateRasp;
 	}
 
 	public Long getDateId() {
@@ -45,12 +46,12 @@ public class Date {
 		this.date = date;
 	}
 
-	public List<DateList> getDateList() {
-		return dateList;
+	public Raspberry getRefDateRasp() {
+		return refDateRasp;
 	}
 
-	public void setDateList(List<DateList> dateList) {
-		this.dateList = dateList;
+	public void setRefDateRasp(Raspberry refDateRasp) {
+		this.refDateRasp = refDateRasp;
 	}
 
 	@Override

@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataRetrievalFailureException;
 
+import java.util.List;
+
 @SpringBootApplication
 public class RaspberryServerApplication {
 	//static TimedReset reset;
@@ -46,27 +48,28 @@ public class RaspberryServerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository rRepo, DateRepository dRepo, DateListRepository dLRepo) {
+	public CommandLineRunner productDemo(RaspberryRepository rRepo, DateRepository dRepo) {
 		return(args) ->{
 			log.info("Saving information");
 
-			dRepo.save(new Date("Mon Sep 28 10:54:43 2020"));
-			dRepo.save(new Date("Mon Sep 28 11:54:43 2020"));
-			dRepo.save(new Date("Mon Sep 28 12:54:43 2020"));
+			rRepo.save(new Raspberry("Suomenlinna", 5, "60.1454,24.98814"));
+			rRepo.save(new Raspberry("Sibelius-monumentti", 25, "60.182113,24.913422"));
+			rRepo.save(new Raspberry("Rautatieasema", 64, "60.171873,24.941422"));
+			rRepo.save(new Raspberry("Presidentinlinna", 2, "60.168389,24.956342"));
 
-			dLRepo.save(new DateList(dRepo.findById((long) 1).get()));
-			dLRepo.save(new DateList(dRepo.findById((long) 2).get()));
-			dLRepo.save(new DateList(dRepo.findById((long) 3).get()));
-			
-			Raspberry suomenlinna = new Raspberry("Suomenlinna", 5, dLRepo.findById((long) 4).get());
-			Raspberry sibeliusmonumentti = new Raspberry("Sibelius-monumentti", 25, dLRepo.findById((long) 4).get());
-			Raspberry rautatieasema = new Raspberry("Rautatieasema", 64, dLRepo.findById((long) 4).get());
-			Raspberry presidentinlinna = new Raspberry("Presidentinlinna", 2, dLRepo.findById((long) 4).get());
 
-			raspberryRepository.save(suomenlinna);
-			raspberryRepository.save(sibeliusmonumentti);
-			raspberryRepository.save(rautatieasema);
-			raspberryRepository.save(presidentinlinna);
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 1).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 2).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 3).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
+			dRepo.save(new Date("Mon Sep 28 10:54:43 2020", rRepo.findById((long) 4).get()));
 			
 			log.info("Fetching data");
 			for(Raspberry raspberry: rRepo.findAll()) {

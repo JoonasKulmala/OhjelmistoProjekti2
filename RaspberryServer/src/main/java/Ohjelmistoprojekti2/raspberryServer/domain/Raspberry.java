@@ -14,20 +14,27 @@ public class Raspberry {
 	private Long id;
 	private String location;
 	private int foundDevices;
-	
-	@ManyToOne
-	@JsonManagedReference
-	@JoinColumn(name = "dateListId" )
-	private DateList dateList;
+	private String geoLocation;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
+	private List<Date> date;
 
 	public Raspberry(){
-
+		super();
 	}
-	
-	public Raspberry(String location, int foundDevices, DateList dateList) {
+
+	public Raspberry(String location, int foundDevices, String geoLocation) {
+		super();
 		this.location = location;
 		this.foundDevices = foundDevices;
-		this.dateList = dateList;
+		this.geoLocation = geoLocation;
+	}
+	
+	public Raspberry(String location, int foundDevices, String geoLocation, List<Date> date) {
+		this.location = location;
+		this.foundDevices = foundDevices;
+		this.geoLocation = geoLocation;
+		this.date = date;
 	}
 
 	public Long getId() {
@@ -52,6 +59,22 @@ public class Raspberry {
 
 	public void setFoundDevices(int foundDevices) {
 		this.foundDevices = foundDevices;
+	}
+
+	public String getGeoLocation() {
+		return geoLocation;
+	}
+
+	public void setGeoLocation(String geoLocation) {
+		this.geoLocation = geoLocation;
+	}
+
+	public List<Date> getDate() {
+		return date;
+	}
+
+	public void setDate(List<Date> date) {
+		this.date = date;
 	}
 
 	@Override
