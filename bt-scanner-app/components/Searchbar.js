@@ -7,29 +7,28 @@ const Searchbar = () => {
   const [search, setSearch] = useState('')
 
   const updateSearch = (search) => {
-    console.log(search)
     setSearch(search)
   }
 
   return (
-    <View style={styles.searchBar}>
+    // <View style={styles.searchBar}>
       <SearchBar
+        // containerStyle={{ position: 'absolute', zIndex: 1 }}
         // style={styles.searchBar}
         placeholder="Type here..."
         onChangeText={updateSearch}
         value={search}
       />
-    </View>
+    // </View>
   )
 }
 
 const styles = StyleSheet.create({
-  // searchBar: {
-  //   position: 'absolute',
-  //   top: 50,
-  //   left: 50,
-  //   zIndex: 1
-  // }
+  searchBar: {
+    position: 'absolute',
+    top: 50,
+    left: 50,
+  }
 })
 
 export default Searchbar
