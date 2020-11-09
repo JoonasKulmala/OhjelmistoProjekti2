@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PlaceInfo from './components/PlaceInfo';
 import Map from './components/Map';
 import locationService from './services/locations'
+import Searchbar from './components/Searchbar';
 
 export default function App() {
   const [locations, setLocations] = useState([])
@@ -15,7 +16,15 @@ export default function App() {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      {/* <View style={styles.radiusButton}>
+        <TouchableOpacity
+          // style={styles.radiusButton}
+        >
+          <Text>show radius</Text>
+        </TouchableOpacity>
+      </View> */}
+      {/* <Searchbar /> */}
       <Map 
         locations={locations} 
         setActiveLocation={setActiveLocation} 
@@ -24,19 +33,18 @@ export default function App() {
         place={activeLocation}
         setActiveLocation={setActiveLocation} 
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
-  mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+  radiusButton: {
+    position: 'absolute',
+    top: '10%',
+    left: '2%',
+    zIndex: 0
   }
 });

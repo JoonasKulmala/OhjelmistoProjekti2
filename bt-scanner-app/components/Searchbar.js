@@ -8,7 +8,7 @@ const Searchbar = () => {
 
   const updateSearch = (search) => {
     console.log(search)
-    setSearch({ search })
+    setSearch(search)
   }
 
   return (
@@ -20,8 +20,6 @@ const Searchbar = () => {
         value={search}
       />
     </View>
-      
-    
   )
 }
 
