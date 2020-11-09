@@ -13,3 +13,7 @@ export const pickPinColor = (bt_connections) => {
     return 'red'
   }
 }
+
+export const formattedDate = () => {
+  return new Date().toUTCString().substr(17, 5)
+}

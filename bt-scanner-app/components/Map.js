@@ -1,15 +1,27 @@
-import MapView, { Callout, Marker } from 'react-native-maps'
-import React from 'react'
-import { Dimensions, StyleSheet, Text } from 'react-native'
-import { pickPinColor } from '../utility'
+import MapView, { Callout, Circle, Marker } from 'react-native-maps'
+import React, { useState } from 'react'
+import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { pickPinColor, formattedDate } from '../utility'
 
 const Map = ({ locations, setActiveLocation }) => {
-  
-  const handleCalloutPress = (place) => {
-    setActiveLocation(place)
-    console.log(place)
+  const [showRadius, setShowRadius] = useState(true)
+  const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
+
+  const handleCalloutPress = (location) => {
+    setActiveLocation(location)
+    console.log(location)
   }
 
+  const toggleRadius = () => {
+    setShowRadius(!showRadius)
+    if (radiusButtonTitle === 'show radius') {
+      setRadiusButtonTitle('hide radius')
+    } else if (radiusButtonTitle === 'hide radius') {
+      setRadiusButtonTitle('show radius')
+    }
+  }
+  
+  // Kartasta hieman selkeämpi
   const mapStyle = [
     {
       "featureType": "administrative",
@@ -48,52 +60,79 @@ const Map = ({ locations, setActiveLocation }) => {
   ]
 
   return (
-    <MapView
-      style={styles.map}
-      initialRegion={{
-        latitude: 60.2997901,
-        longitude: 25.0592432,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
-      }}
-      customMapStyle={mapStyle}
-      kmlSrc={'../kml.js'}
-    >
-      {locations.length !== 0
-        ? locations.map(location => (
-            <Marker 
-              pinColor={pickPinColor(location.bt_devices.latest)}
-              key={location.id}
-              coordinate={{
-                latitude: location.location.lat,
-                longitude: location.location.lon
-              }}
-            >
-              {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
-              Markerin description-propsissa tämä ei oikein onnistunut */}
-              {/* Händleri aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
-              <Callout onPress={() => handleCalloutPress(location)}>
-                <Text>{location.name}</Text>
-                <Text>Devices found: {location.bt_devices.latest}</Text>
-                <Text>{new Date().toUTCString()}</Text>
-                <Text 
-                  onPress={() => console.log('Show more info..')}
-                  style={{ color: 'blue' }}
+    <View>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 60.2997901,
+          longitude: 25.0592432,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+        customMapStyle={mapStyle}
+      >
+        {/* Jos propsi locations ei ole tyhjä, renderöidään Markkerit karttaan.
+        Jos taas on, ei renderöidä mitään (null) */}
+        {locations.length !== 0
+          ? locations.map(location => (
+            <View key={location.id}>
+              <Marker 
+                pinColor={pickPinColor(location.bt_devices.latest)}
+                coordinate={{
+                  latitude: location.location.lat,
+                  longitude: location.location.lon
+                }}
+              >
+                {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
+                Markerin description-propsissa tämä ei oikein onnistunut */}
+                {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
+                <Callout
+                  onPress={() => handleCalloutPress(location)}
                 >
-                  Show more information
-                </Text>
-              </Callout>
-            </Marker>
-          ))
-        : null}
-    </MapView>
+                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
+                  <Text>{location.name}</Text>
+                  <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
+                  <Text 
+                    onPress={() => console.log('Show more info..')}
+                    style={{ color: 'blue' }}
+                  >
+                    Show more information
+                  </Text>
+                </Callout>
+              </Marker>
+              {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
+              {showRadius ?
+                <Circle 
+                  fillColor='#62d255'
+                  center={{
+                    latitude: location.location.lat,
+                    longitude: location.location.lon
+                  }}
+                  radius={15}
+                />
+                : null}
+            </View>
+            ))
+          : null}
+      </MapView>
+      <View style={styles.radiusButton}>
+        <Button 
+          onPress={toggleRadius}
+          title={radiusButtonTitle}
+        />
+      </View>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   map: {
-    width: Dimensions.get('screen').width,
-    height: Dimensions.get('window').height
+    height: Dimensions.get('screen').height,
+  },
+  radiusButton: {
+    position: 'absolute',
+    top: '7%',
+    left: '2%'
   }
 })
 
