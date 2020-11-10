@@ -2,15 +2,16 @@ import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
 import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
-import Searchbar from './Searchbar'
+import Searchbar from './Search'
+import Search from './Search'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
   const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
 
+  // luodaan referenssi, joka annetaan propsina MapView komponentille
   const mapRef = React.createRef()
 
-  console.log('ref: ', mapRef);
   const handleCalloutPress = (location) => {
     setActiveLocation(location)
     console.log(location)
@@ -23,6 +24,16 @@ const Map = ({ locations, setActiveLocation }) => {
     } else if (radiusButtonTitle === 'hide radius') {
       setRadiusButtonTitle('show radius')
     }
+  }
+
+  // toimii
+  const animateToAkanapolku = () => {
+    mapRef.current.animateCamera({ 
+      center: {
+        latitude: 60.2997901,
+        longitude: 25.0592432
+      }
+    })
   }
   
   // Kartasta hieman selkeämpi
@@ -63,18 +74,8 @@ const Map = ({ locations, setActiveLocation }) => {
     }
   ]
 
-  mapRef.current.animateToRegion({
-    latitude: 50,
-    longitude: 25,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1
-  })
-
   return (
     <View>
-      {/* <View style={styles.searchBar}>
-        <Searchbar />
-      </View> */}
       <MapView
         ref={mapRef}
         style={styles.map}
@@ -139,11 +140,12 @@ const Map = ({ locations, setActiveLocation }) => {
       <View style={styles.navigationButton}>
         <Button 
           title="asd"
-          onPress={null}
+          onPress={animateToAkanapolku}
         />
       </View>
-      {/* <View style={styles.searchBar}> */}
-      {/* </View> */}
+      {/* <View style={styles.searchBar}>
+        <Search locations={locations} />
+      </View> */}
     </View>
   )
 }
@@ -158,8 +160,8 @@ const styles = StyleSheet.create({
     left: '2%'
   },
   searchBar: {
-    // position: 'absolute',
-    // top: '10%'
+    position: 'absolute',
+    top: '25%'
   },
   navigationButton: {
     position: 'absolute',
