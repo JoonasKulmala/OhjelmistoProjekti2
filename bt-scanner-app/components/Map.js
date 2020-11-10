@@ -4,13 +4,8 @@ import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
 import RadiusButton from './RadiusButton'
 
-const Map = ({ locations, setActiveLocation }) => {
+const Map = ({ locations, setSelectedLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
-
-  const handleCalloutPress = (location) => {
-    setActiveLocation(location)
-    console.log(location)
-  }
 
   // Kartasta hieman selkeämpi
   const mapStyle = [
@@ -78,7 +73,7 @@ const Map = ({ locations, setActiveLocation }) => {
                 Markerin description-propsissa tämä ei oikein onnistunut */}
                 {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
                 <Callout
-                  onPress={() => handleCalloutPress(location)}
+                  onPress={() => setSelectedLocation(location)}
                 >
                   {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
                   <Text>{location.name}</Text>
