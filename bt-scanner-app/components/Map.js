@@ -1,26 +1,17 @@
 import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
+import RadiusButton from './RadiusButton'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
-  const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
 
   const handleCalloutPress = (location) => {
     setActiveLocation(location)
     console.log(location)
   }
 
-  const toggleRadius = () => {
-    setShowRadius(!showRadius)
-    if (radiusButtonTitle === 'show radius') {
-      setRadiusButtonTitle('hide radius')
-    } else if (radiusButtonTitle === 'hide radius') {
-      setRadiusButtonTitle('show radius')
-    }
-  }
-  
   // Kartasta hieman selkeämpi
   const mapStyle = [
     {
@@ -115,12 +106,10 @@ const Map = ({ locations, setActiveLocation }) => {
             ))
           : null}
       </MapView>
-      <View style={styles.radiusButton}>
-        <Button 
-          onPress={toggleRadius}
-          title={radiusButtonTitle}
-        />
-      </View>
+      <RadiusButton 
+        showRadius={showRadius} 
+        setShowRadius={setShowRadius}
+      />
     </View>
   )
 }
