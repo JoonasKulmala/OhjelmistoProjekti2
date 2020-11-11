@@ -1,17 +1,26 @@
-import { useState } from 'react'
-import { SearchBar } from 'react-native-elements'
+import { useEffect, useState } from 'react'
 import React from 'react'
-import { Button, FlatList, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import locationService from '../services/locations'
 
-const Search = ({ locations }) => {
+const Search = ({ navigation }) => {
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState(null)
+  const [locations, setLocations] = useState([])
+
+  useEffect(() => {
+    locationService
+      .getAll()
+      .then(response => setLocations(response))
+  }, [])
 
   const updateSearch = (search) => {
     setSearch(search)
   }
 
   console.log(locations)
+  // console.log(navigation)
+
   const filterSearchResults = () => {
     locations.forEach(l => console.log(l.name))
     const results = locations.filter(l => l.name.toLowerCase().indexOf(search.toLowerCase()) !== -1)
@@ -19,7 +28,9 @@ const Search = ({ locations }) => {
   }
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Home')}
+    >
       <Text>{item.name}</Text>
     </TouchableOpacity>
   )
@@ -51,7 +62,7 @@ const Search = ({ locations }) => {
         <FlatList
           data={searchResults}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
         />
         : null}
     </View>
