@@ -14,10 +14,6 @@ const Search = ({ navigation }) => {
       .then(response => setLocations(response))
   }, [])
 
-  const updateSearch = (search) => {
-    setSearch(search)
-  }
-
   console.log(locations)
   // console.log(navigation)
 
@@ -48,10 +44,7 @@ const Search = ({ navigation }) => {
     // </View>
     <View>
       <TextInput 
-        onChangeText={(input) => {
-          updateSearch(input)
-          console.log(search)
-        }}
+        onChangeText={input => setSearch(input)}
         value={search}
       />
       <Button

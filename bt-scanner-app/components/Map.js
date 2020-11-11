@@ -1,11 +1,13 @@
 import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Button, Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
   const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
+  const [search, setSearch] = useState(null)
+  const [searchResults, setSearchResults] = useState(null)
 
   // luodaan referenssi, joka annetaan propsina MapView komponentille
   const mapRef = React.createRef()
@@ -33,7 +35,31 @@ const Map = ({ locations, setActiveLocation }) => {
       }
     })
   }
+
+  const animateToGivenLocation = (latitude, longitude) => {
+    mapRef.current.animateCamera({
+      center: {
+        latitude: latitude,
+        longitude: longitude
+      }
+    })
+  }
+
+  const filterSearchResults = () => {
+    console.log('searchword: ', search);
+    const results = locations.filter(l => l.name.toLowerCase().indexOf(search.toLowerCase()) !== -1)
+    setSearchResults(results)
+  }
+  // console.log(searchResults)
   
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => animateToGivenLocation(item.location.lat, item.location.lon)}
+    >
+      <Text>{item.name}</Text>
+    </TouchableOpacity>
+  ) 
+
   // Kartasta hieman selkeämpi
   const mapStyle = [
     {
@@ -141,9 +167,26 @@ const Map = ({ locations, setActiveLocation }) => {
           onPress={animateToAkanapolku}
         />
       </View>
-      {/* <View style={styles.searchBar}>
-        <Search locations={locations} />
-      </View> */}
+      <View style={styles.search}>
+        <TextInput 
+          onChangeText={input => setSearch(input)}
+          value={search}
+        />
+        <Button
+          title="search"
+          onPress={() => {
+            filterSearchResults()
+            console.log('search results:', searchResults);
+          }}
+        />
+      </View>
+      <View style={styles.searchResults}>
+        <FlatList 
+          data={searchResults}
+          renderItem={renderItem}
+          keyExtractor={item => String(item.id)}
+        />
+      </View>
     </View>
   )
 }
@@ -157,7 +200,7 @@ const styles = StyleSheet.create({
     top: '7%',
     left: '2%'
   },
-  searchBar: {
+  search: {
     position: 'absolute',
     top: '25%'
   },
@@ -165,6 +208,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '7%',
     left: '75%'
+  },
+  searchResults: {
+    position: 'absolute',
+    top: '35%'
   }
   
 })
