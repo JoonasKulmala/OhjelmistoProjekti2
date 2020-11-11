@@ -14,7 +14,8 @@ public class Raspberry {
 	private Long id;
 	private String location;
 	private int foundDevices;
-	private String geoLocation;
+	private String latitude;
+	private String longitude;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
@@ -23,17 +24,19 @@ public class Raspberry {
 		super();
 	}
 
-	public Raspberry(String location, int foundDevices, String geoLocation) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude) {
 		super();
 		this.location = location;
 		this.foundDevices = foundDevices;
-		this.geoLocation = geoLocation;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	
-	public Raspberry(String location, int foundDevices, String geoLocation, List<TimeStamp> timeStamp) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp) {
 		this.location = location;
 		this.foundDevices = foundDevices;
-		this.geoLocation = geoLocation;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.timeStamp = timeStamp;
 	}
 
@@ -61,12 +64,20 @@ public class Raspberry {
 		this.foundDevices = foundDevices;
 	}
 
-	public String getGeoLocation() {
-		return geoLocation;
+	public String getLatitude() {
+		return latitude;
 	}
 
-	public void setGeoLocation(String geoLocation) {
-		this.geoLocation = geoLocation;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 	public List<TimeStamp> getTimeStamp() {
