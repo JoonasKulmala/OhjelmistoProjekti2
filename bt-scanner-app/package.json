@@ -18,26 +18,28 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
-    "setupFilesAfterEnv": ["<rootDir>/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ]
   },
   "dependencies": {
     "axios": "^0.20.0",
     "expo": "~38.0.8",
     "expo-cli": "^3.27.14",
-    "expo-status-bar": "^1.0.2",
-    "react": "~16.11.0",
-    "react-dom": "~16.11.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "expo-status-bar": "~1.0.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
     "react-native-elements": "^2.3.2",
     "react-native-maps": "0.27.1",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.13.7"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@testing-library/jest-native": "^3.4.3",
     "@testing-library/react-native": "^7.0.2",
     "babel-eslint": "^10.1.0",
-    "babel-preset-expo": "~8.1.0",
+    "babel-preset-expo": "^8.3.0",
     "eslint": "^7.11.0",
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-react": "^7.21.4",
