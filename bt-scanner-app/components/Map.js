@@ -2,6 +2,7 @@ import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
 import { Button, Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
+import SearchResults from './SearchResults'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
@@ -167,7 +168,7 @@ const Map = ({ locations, setActiveLocation }) => {
           onPress={animateToAkanapolku}
         />
       </View>
-      <View style={styles.search}>
+      {/* <View style={styles.search}>
         <TextInput 
           onChangeText={input => setSearch(input)}
           value={search}
@@ -179,14 +180,15 @@ const Map = ({ locations, setActiveLocation }) => {
             console.log('search results:', searchResults);
           }}
         />
-      </View>
-      <View style={styles.searchResults}>
+      </View> */}
+      {/* <View style={styles.searchResults}>
         <FlatList 
           data={searchResults}
           renderItem={renderItem}
           keyExtractor={item => String(item.id)}
         />
-      </View>
+      </View> */}
+      <SearchResults />
     </View>
   )
 }

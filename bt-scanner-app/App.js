@@ -41,8 +41,24 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Search" component={Search} />
+        <Drawer.Screen 
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerTitle: props => console.log(props),
+            headerRight: () => (
+              // <Button 
+              //   onPress={() => navigatio}
+              //   title="Search"
+              // />
+              <Search />
+            )
+          }}
+        />
+        <Drawer.Screen 
+          name="Search"
+          component={Search}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
     // <SafeAreaView style={styles.container}>
