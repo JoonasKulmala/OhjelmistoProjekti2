@@ -5,7 +5,7 @@
 - [Team IdeaaVailla](#team-ideaavailla)
   - [Table of contents](#table-of-contents)
   - [Dependencies](#dependencies)
-  	- [Python dependencies for bluetooth scanning](#python-dependencies-for-bluetooth-scanning)
+  	- [Python dependencies for bluetooth scanning](#python-dependencies)
   	- [Node dependencies](#node-dependencies)
 
 ## Dependencies
