@@ -5,20 +5,18 @@
 - [Team IdeaaVailla](#team-ideaavailla)
   - [Table of contents](#table-of-contents)
   - [Dependencies](#dependencies)
-  	- [Python dependencies for bluetooth scanning](#python-dependencies-for-bluetooth-scanning)
+  	- [Python dependencies](#python-dependencies)
   	- [Node dependencies](#node-dependencies)
 
 ## Dependencies
 
-### Python dependencies for bluetooth scanning
+### Python dependencies
 
     sudo apt install python-dev
     sudo apt install libbluetooth-dev
     pip3 install pybluez
     pip3 install schedule
-    
-    #pip install bleak
-    #pip install ipinfo
+    pip3 install ipinfo
     
 
 ### Node dependencies

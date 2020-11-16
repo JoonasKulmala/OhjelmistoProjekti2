@@ -3,9 +3,9 @@ import { Card } from "react-native-elements";
 import React from 'react'
 import { formattedDate } from "../utility";
 
-export default function PlaceInfo({ place, setActiveLocation }) {
+export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
 
-  if (!place) {
+  if (!selectedLocation) {
     return null
   }
 
@@ -15,12 +15,12 @@ export default function PlaceInfo({ place, setActiveLocation }) {
         {/* <Text testID="placeInfo_name">{place.name}</Text> */}
         <Text></Text>
         <Text>Devices:</Text>
-        <Text testID="latestScan">{formattedDate()} - {place.bt_devices[0].latest}</Text>
-        <Text testID="previousScan">15:00 - {place.bt_devices["15:00"]}</Text>
-        <Text>14:30 - {place.bt_devices["14:30"]}</Text>
-        <Text 
+        <Text testID="latestScan">{formattedDate()} - {selectedLocation.bt_devices[0].latest}</Text>
+        <Text testID="previousScan">15:00 - {selectedLocation.bt_devices["15:00"]}</Text>
+        <Text>14:30 - {selectedLocation.bt_devices["14:30"]}</Text>
+        <Text
           style={{ color: 'red'}}
-          onPress={() => setActiveLocation(null)}
+          onPress={() => setSelectedLocation(null)}
         >
           close
         </Text>
