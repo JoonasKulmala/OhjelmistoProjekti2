@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import PlaceInfo from './components/PlaceInfo';
 import Map from './components/Map';
 import locationService from './services/locations'
-import Searchbar from './components/Searchbar';
 
 export default function App() {
   const [locations, setLocations] = useState([])
+  // activeLocation vaihtuu aina kun painetaan jotain kohdetta kartasta
+  // Määrittää renderöidäänkö PlaceInfo komponentti ruudulle
   const [activeLocation, setActiveLocation] = useState(null)
 
   useEffect(() => {
