@@ -51,7 +51,7 @@ public class RaspberryServerApplication {
 			
 			rRepo.deleteAll();
 			tRepo.deleteAll();
-
+			
 			rRepo.save(new Raspberry("Suomenlinna", 5, "60.1454","24.98814"));
 			rRepo.save(new Raspberry("Sibelius-monumentti", 25, "60.182113","24.913422"));
 			rRepo.save(new Raspberry("Rautatieasema", 64, "60.171873","24.941422" ));
