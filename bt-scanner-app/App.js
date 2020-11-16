@@ -10,13 +10,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlaceInfo from './components/PlaceInfo';
 import Map from './components/Map';
 import SightList from './components/SightList';
+import FrontPage from './components/FrontPage';
 
-// TO-do vaihda myöhemmin komponentti ja sen nimi, kun navi todettu toimivaksi
+
 const MapStack = createStackNavigator();
 function MapStackScreen() {
   return (
     <MapStack.Navigator>
-      <MapStack.Screen name ="Capital Area Map View" component={ SightList } />
+      <MapStack.Screen name ="Kartta" component={ FrontPage } />
     </MapStack.Navigator>
     );
 }
@@ -26,7 +27,7 @@ const PlaceListStack = createStackNavigator();
 function ListStackScreen() {
   return (
     <PlaceListStack.Navigator>
-    <PlaceListStack.Screen name ="List of Sights" component={ SightList } />
+    <PlaceListStack.Screen name ="Kohteet" component={ SightList } />
     </PlaceListStack.Navigator>
     );
 }
@@ -34,28 +35,9 @@ function ListStackScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [locations, setLocations] = useState([])
-  // selectedLocation vaihtuu aina kun painetaan jotain kohdetta kartasta
-  // Määrittää renderöidäänkö PlaceInfo komponentti ruudulle
-  const [selectedLocation, setSelectedLocation] = useState(null)
-
-  useEffect(() => {
-    locationService
-      .getAll()
-      .then(response => setLocations(response))
-  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
-      <Map
-        locations={locations}
-        setSelectedLocation={setSelectedLocation}
-      />
-      <PlaceInfo
-        selectedLocation={selectedLocation}
-        setSelectedLocation={setSelectedLocation}
-      />
-      //Tämä kohta kai pitäis järjestellä jotenki järkevästi(?)
       <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Lista" component={ListStackScreen} />
