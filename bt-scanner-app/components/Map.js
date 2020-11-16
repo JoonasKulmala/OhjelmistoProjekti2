@@ -2,6 +2,7 @@ import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
 import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
+import CustomCallout from './CustomCallout'
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
@@ -71,28 +72,37 @@ const Map = ({ locations, setActiveLocation }) => {
           ? locations.map(location => (
             <View key={location.id}>
               <Marker 
-                pinColor={pickPinColor(location.bt_devices.latest)}
+                pinColor={pickPinColor(location.bt_devices[0].latest)}
                 coordinate={{
                   latitude: location.location.lat,
                   longitude: location.location.lon
                 }}
+                onPress={null}
               >
                 {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
                 Markerin description-propsissa tämä ei oikein onnistunut */}
                 {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
                 <Callout
                   onPress={() => handleCalloutPress(location)}
+                  // style={styles.callout}
+                  tooltip
                 >
                   {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 aaaaaaaaaa*/}
-                  <Text>{location.name}</Text>
+                  {/* <Text>{location.name}</Text>
                   <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
                   <Text 
                     onPress={() => console.log('Show more info..')}
                     style={{ color: 'blue' }}
                   >
                     Show more information
-                  </Text>
-                </Callout>
+                  </Text> */}
+                  <CustomCallout>
+                    <Text>{location.name}</Text>
+                    {/* tyylittele alla oleva */}
+                    {/* <Text>Number of Bluetooth devices found: {location.bt_devices[0].latest}</Text> */}
+                    <Text>{location.bt_devices[0].latest}</Text>
+                  </CustomCallout>
+                </Callout> 
               </Marker>
               {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {showRadius ?
@@ -127,6 +137,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '7%',
     left: '2%'
+  },
+  callout: {
+    width: 125,
+    height: 125
   }
 })
 

@@ -12,9 +12,9 @@ export default function PlaceInfo({ place, setActiveLocation }) {
   return (
     <View style={styles.container}>
       <Card style={styles.infoCard}>
-        {/* <Text testID="placeInfo_name">{place.name}</Text> */}
+        <Text testID="placeInfo_name">{place.name}</Text>
         <Text></Text>
-        <Text>Devices:</Text>
+        <Text>People in the area (approximately):</Text>
         <Text testID="latestScan">{formattedDate()} - {place.bt_devices[0].latest}</Text>
         <Text testID="previousScan">15:00 - {place.bt_devices["15:00"]}</Text>
         <Text>14:30 - {place.bt_devices["14:30"]}</Text>
