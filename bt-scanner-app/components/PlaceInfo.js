@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: '30%',
-    width: Dimensions.get('screen').width,
+    left: '5%',
+    width: (Dimensions.get('screen').width * 0.90)
   },
 })
