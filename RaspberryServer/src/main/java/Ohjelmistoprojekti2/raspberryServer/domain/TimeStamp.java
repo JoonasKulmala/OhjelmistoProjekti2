@@ -1,6 +1,5 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
 
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -10,8 +9,8 @@ import java.util.List;
 
 @Entity
 public class TimeStamp {
-	
-	@Id//Annotaatioiden avulla luodaan jokaiselle uudelle ajalle oma id
+
+	@Id // Annotaatioiden avulla luodaan jokaiselle uudelle ajalle oma id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long dateId;
 	private String timeStamp;
@@ -19,14 +18,14 @@ public class TimeStamp {
 	@JsonBackReference
 	@ManyToOne
 	private Raspberry refDateRasp;
-	
+
 	public TimeStamp() {
 		super();
 	}
-	
-	public TimeStamp(String date, Raspberry refDateRasp) {
+
+	public TimeStamp(String timeStamp, Raspberry refDateRasp) {
 		super();
-		this.timeStamp = date;
+		this.timeStamp = timeStamp;
 		this.refDateRasp = refDateRasp;
 	}
 
@@ -38,12 +37,12 @@ public class TimeStamp {
 		this.dateId = dateId;
 	}
 
-	public String getDate() {
+	public String getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setDate(String date) {
-		this.timeStamp = date;
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	public Raspberry getRefDateRasp() {
