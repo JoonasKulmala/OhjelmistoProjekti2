@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
 import RadiusButton from './RadiusButton'
+import NumberMarker from './NumberMarker'
 
 const Map = ({ locations, setSelectedLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
@@ -69,22 +70,7 @@ const Map = ({ locations, setSelectedLocation }) => {
                   longitude: location.location.lon
                 }}
               >
-                {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
-                Markerin description-propsissa tämä ei oikein onnistunut */}
-                {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
-                <Callout
-                  onPress={() => setSelectedLocation(location)}
-                >
-                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
-                  <Text>{location.name}</Text>
-                  <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
-                  <Text 
-                    onPress={() => console.log('Show more info..')}
-                    style={{ color: 'blue' }}
-                  >
-                    Show more information
-                  </Text>
-                </Callout>
+                <NumberMarker location={location} />
               </Marker>
               {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {showRadius ?
