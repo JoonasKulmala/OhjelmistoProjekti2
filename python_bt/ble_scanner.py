@@ -1,4 +1,3 @@
-from bluetooth.bluez import discover_devices
 import bluetooth
 import schedule
 import time
@@ -7,35 +6,66 @@ import json
 import requests
 import urllib.request
 import socket
-import ipinfo
+from bluetooth.bluez import discover_devices
 
-JSON_URL = 'https://raspberrybackend.herokuapp.com/results'
-PUT_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
+# Return MAC address, if fail generate random string
+from uuid import getnode as get_mac
+# Capped at 50,000 monthly requests, need error handling for slow response
+import ipinfo
+from ipinfo import details
+
+
+# Endpoint listing every scan result
+RESULTS_URL = 'http://localhost:8080/results'
+# RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
+
+# Endpoint listing each individual Raspberry Pi
+RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
+# RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
 
 
 def ble_scan():
     ble_devices = []
     print('Scanning for nearby devices...')
-    nearby_devices = bluetooth.discover_devices(lookup_names=True)
-    print('Devices found: %s' % len(nearby_devices))
+    ble_devices = bluetooth.discover_devices(lookup_names=True)
+    print('Devices found: %s' % len(ble_devices))
 
-    for addr, name in nearby_devices:
+    # Name, MAC for each scanned device
+    for addr, name in ble_devices:
         print('name :', name, 'address :', addr)
 
-    for item in nearby_devices:
-        if item in ble_devices:
-            pass
-        else:
-            ble_devices.append(item)
+    # Append unique device, unnecessary?
 
+    # for item in ble_devices:
+    #     if item in ble_devices:
+    #         pass
+    #     else:
+    #         ble_devices.append(item)
+
+    # Return current time
     ts = time.time()
     readable = time.ctime(ts)
 
-    location = ''
-    addr = ''
+    # Return name of scan performing device
+    # hostname = 'Suomenlinna'
+    hostname = socket.gethostname()
 
-    objToSend = {'location': location, 'foundDevices': len(ble_devices),
-                 'macaddr': addr, 'date': readable}
+    # Return MAC address of scan performing device
+    # macaddress = get_mac()
+
+    # Return latitude, longitude of scan performing device, (details.all) for full response
+    access_token = '1a9c774186e4d2'  # Require personal access token from ipinfo.io
+    handler = ipinfo.getHandler(access_token)
+    ip_address = ''
+    details = handler.getDetails(ip_address)
+
+    # Data to be sent in JSON format
+    objToSend = {'location': hostname, 'foundDevices': len(
+        ble_devices), 'date': readable, 'latitude': details.latitude, 'longitude': details.longitude}
+
+    # Produce list[] of each Raspberry Pi (hostname)
+    #data = get_locations()
+    #locations = [x['location'] for x in data]
 
     data = get_locations()
     locations = []
@@ -45,18 +75,22 @@ def ble_scan():
         locations.append(data[i]['location'])
         i += 1
 
+    print(hostname)
     print(locations)
-    for location in locations:
-        if location in locations:
-            index = locations.index(location + 1)
-            str_index = str(index)
-            send = requests.put(
-                'https://raspberrybackend.herokuapp.com/api/raspberries/' + str_index, json=objToSend)
+    if hostname in locations:
+        print('Existing Raspberry Pi')
+        send = requests.post(RESULTS_URL, json=objToSend)
 
-        else:
-            send = requests.post(JSON_URL, json=objToSend)
+    else:
+        print('New Raspberry Pi, add to /raspberries')
+        # index = locations.index(hostname, 1)  # (hostname + 1)
+        # str_index = str(index)
+        send = requests.post(
+            'http://localhost:8080/api/raspberries', json=objToSend)
+
+    print(send.text)
 
 
 def get_locations():
-    with urllib.request.urlopen(JSON_URL) as response:
+    with urllib.request.urlopen(RESULTS_URL) as response:
         return json.loads(response.read())
