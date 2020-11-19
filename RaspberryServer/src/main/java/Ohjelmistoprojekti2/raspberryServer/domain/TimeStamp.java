@@ -19,7 +19,7 @@ public class TimeStamp {
 	public TimeStamp() {
 		super();
 	}
-
+	
 	public TimeStamp(String timeStamp, Raspberry refDateRasp) {
 		super();
 		this.timeStamp = timeStamp;

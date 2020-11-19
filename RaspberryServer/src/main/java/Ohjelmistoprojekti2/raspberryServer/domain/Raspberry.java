@@ -13,9 +13,10 @@ public class Raspberry {
 	private int foundDevices;
 	private String latitude;
 	private String longitude;
+	private String imageUrl;
 
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp", fetch=FetchType.EAGER)
 	private List<TimeStamp> timeStamp;
 
 	public Raspberry(){
@@ -28,7 +29,14 @@ public class Raspberry {
 		this.foundDevices = foundDevices;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		
+	}
+	
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl) {
+		this.location = location;
+		this.foundDevices = foundDevices;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
 	}
 	
 	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp) {
@@ -37,6 +45,16 @@ public class Raspberry {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.timeStamp = timeStamp;
+	}
+	
+	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl) {
+		this.location = location;
+		this.foundDevices = foundDevices;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.timeStamp = timeStamp;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getId() {
@@ -86,12 +104,35 @@ public class Raspberry {
 	public void setTimeStamp(List<TimeStamp> timeStamp) {
 		this.timeStamp = timeStamp;
 	}
+	
+	
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+/*
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+"]";
 	}
+*/
+//lisätty toString-metodi kuvien linkkejä varten
+	/*
+	@Override
+	public String toString() {
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" + imageUrl + ", timeStamp=" + timeStamp + "]";
+	}
+	*/
 
+	@Override
+	public String toString() {
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]";
+	}
 	
 	
 }

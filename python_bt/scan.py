@@ -1,6 +1,6 @@
 import schedule
 import time
-from bt_LE_scanner import ble_scan  # Muista vaihtaa oikeaan luokkaan
+from ble_scanner import ble_scan  # Muista vaihtaa oikeaan luokkaan
 
 
 def main():
