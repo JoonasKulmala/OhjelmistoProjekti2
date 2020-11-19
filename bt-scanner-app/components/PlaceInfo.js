@@ -13,8 +13,8 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
     <View style={styles.container}>
       <Card style={styles.infoCard}>
         {/* <Text testID="placeInfo_name">{place.name}</Text> */}
-        <Text></Text>
-        <Text>Devices:</Text>
+        <Text style={styles.locationName}>{selectedLocation.name}</Text>
+        <Text style={styles.scanHistory}>Scan history</Text>
         <Text testID="latestScan">{formattedDate()} - {selectedLocation.bt_devices[0].latest}</Text>
         <Text testID="previousScan">15:00 - {selectedLocation.bt_devices["15:00"]}</Text>
         <Text>14:30 - {selectedLocation.bt_devices["14:30"]}</Text>
@@ -35,4 +35,11 @@ const styles = StyleSheet.create({
     top: '30%',
     width: Dimensions.get('screen').width,
   },
+  locationName: {
+    marginBottom: 15,
+    fontSize: 20
+  },
+  scanHistory: {
+    marginBottom: 5
+  }
 })
