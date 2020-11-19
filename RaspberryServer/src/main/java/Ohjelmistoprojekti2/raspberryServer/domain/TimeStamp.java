@@ -3,9 +3,6 @@ package Ohjelmistoprojekti2.raspberryServer.domain;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
 
 @Entity
 public class TimeStamp {
@@ -22,7 +19,7 @@ public class TimeStamp {
 	public TimeStamp() {
 		super();
 	}
-
+	
 	public TimeStamp(String timeStamp, Raspberry refDateRasp) {
 		super();
 		this.timeStamp = timeStamp;

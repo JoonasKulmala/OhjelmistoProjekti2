@@ -3,9 +3,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Raspberry {
 	@Id
@@ -16,6 +13,8 @@ public class Raspberry {
 	private int foundDevices;
 	private String latitude;
 	private String longitude;
+	private String imageUrl;
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
@@ -32,12 +31,22 @@ public class Raspberry {
 		this.longitude = longitude;
 	}
 	
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl) {
+		this.location = location;
+		this.foundDevices = foundDevices;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
+	}
+	
+	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl) {
 		this.location = location;
 		this.foundDevices = foundDevices;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.timeStamp = timeStamp;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getId() {
@@ -88,11 +97,32 @@ public class Raspberry {
 		this.timeStamp = timeStamp;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+"]";
 	}
 
-	
+//lisätty toString-metodi kuvien linkkejä varten
+	/*
+	@Override
+	public String toString() {
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" + imageUrl + ", timeStamp=" + timeStamp + "]";
+	}
+	*/
+/*
+	@Override
+	public String toString() {
+		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]";
+	}
+	*/
 	
 }
