@@ -16,7 +16,7 @@ public class Raspberry {
 	private String imageUrl;
 
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp", fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
 
 	public Raspberry(){
@@ -37,14 +37,6 @@ public class Raspberry {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
-	}
-	
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp) {
-		this.location = location;
-		this.foundDevices = foundDevices;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.timeStamp = timeStamp;
 	}
 	
 	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
@@ -104,8 +96,6 @@ public class Raspberry {
 	public void setTimeStamp(List<TimeStamp> timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	
-	
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -114,12 +104,12 @@ public class Raspberry {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-/*
+
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+"]";
 	}
-*/
+
 //lisätty toString-metodi kuvien linkkejä varten
 	/*
 	@Override
@@ -127,12 +117,12 @@ public class Raspberry {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" + imageUrl + ", timeStamp=" + timeStamp + "]";
 	}
 	*/
-
+/*
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", latitude="
 				+ latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]";
 	}
-	
+	*/
 	
 }
