@@ -6,7 +6,7 @@ import RadiusButton from './RadiusButton'
 import NumberMarker from './NumberMarker'
 
 const Map = ({ locations, setSelectedLocation }) => {
-  const [showRadius, setShowRadius] = useState(true)
+  const [scanRadius, setScanRadius] = useState(false)
 
   // Kartasta hieman selkeämpi
   const mapStyle = [
@@ -69,11 +69,14 @@ const Map = ({ locations, setSelectedLocation }) => {
                   latitude: location.location.lat,
                   longitude: location.location.lon
                 }}
+                onPress={() => setSelectedLocation(location)}
               >
-                <NumberMarker location={location} />
+                <NumberMarker 
+                  location={location}
+                />
               </Marker>
               {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
-              {showRadius ?
+              {scanRadius ?
                 <Circle 
                   fillColor='#62d255'
                   center={{
@@ -88,8 +91,8 @@ const Map = ({ locations, setSelectedLocation }) => {
           : null}
       </MapView>
       <RadiusButton 
-        showRadius={showRadius} 
-        setShowRadius={setShowRadius}
+        scanRadius={scanRadius} 
+        setScanRadius={setScanRadius}
       />
     </View>
   )
