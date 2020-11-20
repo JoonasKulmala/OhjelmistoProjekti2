@@ -1,5 +1,27 @@
 {
   "places": [
+    { 
+      "id": 1, 
+      "name": "Haaga-Helia ammattikorkeakoulu",
+      "location": {
+        "lat": 60.2011301,
+        "lon": 24.9348275
+      },
+      "scan_results": [
+        { 
+          "time": 15,
+          "devices": 2
+        },
+        { 
+          "time": 14,
+          "devices": 4
+        },
+        { 
+          "time": 13,
+          "devices": 6
+        }
+      ]
+    },
     {
       "id": 2, 
       "name": "Ateneum",

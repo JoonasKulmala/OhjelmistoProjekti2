@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import PlaceInfo from './components/PlaceInfo';
 import Map from './components/Map';
 import locationService from './services/locations'
+import D3ScaleTestPage from './components/D3ScaleTestPage'
 
 export default function App() {
   const [locations, setLocations] = useState([])
@@ -26,6 +27,7 @@ export default function App() {
         selectedLocation={selectedLocation}
         setSelectedLocation={setSelectedLocation} 
       />
+      {/* <D3ScaleTestPage /> */}
     </SafeAreaView>
   );
 }
