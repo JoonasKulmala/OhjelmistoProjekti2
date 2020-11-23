@@ -5,7 +5,7 @@ import locationService from '../services/locations'
 
 const Search = (props) => {
 
-  console.log('Search props: ', props)
+  // console.log('Search props: ', props)
 
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState(null)

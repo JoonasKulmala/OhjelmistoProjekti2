@@ -5,44 +5,47 @@ export default function SearchPage({ locations }) {
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState(null)
 
-  // console.log(locations)
-
   const renderItem = (locationObject) => {
+    console.log(locationObject)
     return (
-      <Text>{locationObject.item.name}</Text>
+      <Text>{locationObject.item.name}
+        <Text>{searchInput}</Text>
+      </Text>
     )
   }
 
+  // funktio, joka suodattaa locations taulukosta 
+  // pois oliot, jotka eivät täsmää syötetyn hakusanan kanssa
+  // Käytetään apuna RegExp-oliota ja 
+  // String-olion metodia 'match'
+
   const filterSearchResults = (searchInput) => {
     const searchResults = locations.filter(location => {
-      const regex = new RegExp(searchInput, 'gi')
-      console.log(location.name.match(regex))
+      const regex = new RegExp(searchInput, 'i')
+      console.log(`location: ${location}, regex: ${regex}`)
+      console.log(`match??, ${location.name.match(regex)}`)
       return location.name.match(regex)
     })
-    // console.log(searchResults)
+
     setSearchResults(searchResults)
   }
 
-  // console.log('search results: ', filterSearchResults())
-
   return (
     <View style={styles.container}>
-      {/* <View> */}
-        <TextInput
-          style={styles.searchBar}
-          onChangeText={(e) => {
-            console.log(e)
-            setSearchInput(e.value)
-            filterSearchResults(e.value)
-            console.log('searchResults: ', searchResults)
-          }}
-          value={searchInput}
-        />
-        <FlatList 
-          data={searchResults}
-          renderItem={renderItem}
-        />
-      {/* </View> */}
+      <TextInput
+        style={styles.searchBar}
+        onChangeText={(e) => {
+          console.log(e)
+          setSearchInput(e)
+          filterSearchResults(e)
+        }}
+        value={searchInput}
+      />
+      <FlatList 
+        data={searchResults}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
     </View>
   )
 }
@@ -54,9 +57,12 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     marginTop: 10,
-    // justifyContent: 'center',
     width: '60%',
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    paddingLeft: 5,
+    paddingVertical: 5
   }
 })
