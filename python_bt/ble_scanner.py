@@ -67,7 +67,7 @@ def ble_scan():
 
     # Data in JSON format
     objToSend = {'location': hostname, 'foundDevices': len(
-        ble_devices), 'date': readable, 'latitude': details.latitude, 'longitude': details.longitude}  # Timestamp not working
+        ble_devices), 'timestamp': readable, 'latitude': details.latitude, 'longitude': details.longitude}  # Timestamp not working
 
     # List existing Raspberries
     data = getExistingRaspberries()
