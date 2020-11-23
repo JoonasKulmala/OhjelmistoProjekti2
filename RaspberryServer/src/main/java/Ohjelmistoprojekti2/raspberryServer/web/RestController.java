@@ -29,9 +29,23 @@ public class RestController {
 		return (List<Raspberry>) repository.findAll();
 	}
 	//Käytetään post-metodia uuden laitteen lisäämiseen
-	@RequestMapping(value="/results", method = RequestMethod.POST)
+	@RequestMapping(value="/api/raspberries", method = RequestMethod.POST)
 	public @ResponseBody Raspberry addNewDevice(@RequestBody Raspberry raspberry) {
 		repository.save(raspberry);
 		return raspberry;
 	}
+	
+	//Käytetään post-metodia uuden laitteen lisäämiseen
+		@RequestMapping(value="/results", method = RequestMethod.POST)
+		public @ResponseBody Raspberry addNewEntry(@RequestBody Raspberry raspberry) {
+			//repository.save(raspberry);
+			return raspberry;
+		}
+	
+//	//Käytetään delete-metodia laitteen poistoon
+//		@RequestMapping(value="/api/raspberries", method = RequestMethod.DELETE)
+//		public @ResponseBody Raspberry removeDevice(@RequestBody Raspberry raspberry) {
+//			repository.delete(raspberry);
+//			return raspberry;
+//		}
 }

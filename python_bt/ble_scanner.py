@@ -10,9 +10,11 @@ from bluetooth.bluez import discover_devices
 
 # Return MAC address, if fail generate random string
 from uuid import getnode as get_mac
+
 # Capped at 50,000 monthly requests, need error handling for slow response
 import ipinfo
 from ipinfo import details
+from requests.exceptions import ConnectTimeout
 
 
 # Endpoint listing every scan result
@@ -47,17 +49,24 @@ def ble_scan():
     readable = time.ctime(ts)
 
     # Return name of scan performing device
-    # hostname = 'Suomenlinna'
+    # hostname = 'Joonas-Osaa-Taas'
     hostname = socket.gethostname()
 
     # Return MAC address of scan performing device
     # macaddress = get_mac()
 
     # Return latitude, longitude of scan performing device, (details.all) for full response
-    access_token = '1a9c774186e4d2'  # Require personal access token from ipinfo.io
-    handler = ipinfo.getHandler(access_token)
-    ip_address = ''
-    details = handler.getDetails(ip_address)
+    while True:
+        try:
+            access_token = '1a9c774186e4d2'  # Require personal access token from ipinfo.io
+            handler = ipinfo.getHandler(access_token)
+            ip_address = ''
+            details = handler.getDetails(ip_address)
+
+            break
+        except ConnectTimeout:
+            print('Slow response, attempting reconnect...')
+            return True
 
     # Data to be sent in JSON format
     objToSend = {'location': hostname, 'foundDevices': len(
@@ -77,6 +86,7 @@ def ble_scan():
 
     print(hostname)
     print(locations)
+    # for hostname in locations:
     if hostname in locations:
         print('Existing Raspberry Pi')
         send = requests.post(RESULTS_URL, json=objToSend)
@@ -86,11 +96,11 @@ def ble_scan():
         # index = locations.index(hostname, 1)  # (hostname + 1)
         # str_index = str(index)
         send = requests.post(
-            'http://localhost:8080/api/raspberries', json=objToSend)
+            RASPBERRIES_URL, json=objToSend)
 
     print(send.text)
 
 
 def get_locations():
-    with urllib.request.urlopen(RESULTS_URL) as response:
+    with urllib.request.urlopen(RESULTS_URL) as response:  # rasps_url?
         return json.loads(response.read())
