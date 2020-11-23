@@ -16,12 +16,12 @@ from requests.exceptions import ConnectTimeout
 
 
 # Endpoint listing every scan result
-# RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
-RESULTS_URL = 'http://localhost:8080/results'
+RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
+# RESULTS_URL = 'http://localhost:8080/results'
 
 # Endpoint listing each individual Raspberry Pi
-# RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
-RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
+RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
+# RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
 
 
 def ble_scan():
