@@ -6,6 +6,7 @@ import locationService from './services/locations'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
 import Search from './components/Search';
+import SearchPage from './components/SearchPage';
 
 const Drawer = createDrawerNavigator()
 
@@ -23,7 +24,10 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <SearchPage 
+        locations={locations}
+      />
+      {/* <View>
         <Map 
           locations={locations} 
           setActiveLocation={setActiveLocation} 
@@ -32,7 +36,7 @@ const HomeScreen = () => {
           place={activeLocation}
           setActiveLocation={setActiveLocation} 
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   )
 }
