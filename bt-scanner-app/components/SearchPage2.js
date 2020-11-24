@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-export default function SearchPage({ locations }) {
+export default function SearchPage2({ locations, animateToGivenLocation }) {
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState(null)
 
-  const renderItem = (locationObject) => {
-    console.log(locationObject)
+  const renderItem = ({ item }) => {
+    // console.log(item)
     return (
-      <TouchableOpacity style={styles.flatListItem}>
-        <Text>{locationObject.item.name}</Text>
+      <TouchableOpacity 
+        style={styles.flatListItem}
+        onPress={() => animateToGivenLocation(
+            item.location.lat, item.location.lon)}
+      >
+        <Text>{item.name}</Text>
       </TouchableOpacity>
     )
   }
@@ -52,7 +56,8 @@ export default function SearchPage({ locations }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // position: 'absolute'
+    // flex: 1,
     alignItems: 'center'
   },
   searchBar: {

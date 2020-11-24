@@ -24,10 +24,13 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchPage 
-        locations={locations}
-      />
-      {/* <View>
+      
+      {/* <View> */}
+        {/* <View style={styles.search}> */}
+          {/* <SearchPage 
+            locations={locations}
+          /> */}
+        {/* </View> */}
         <Map 
           locations={locations} 
           setActiveLocation={setActiveLocation} 
@@ -36,7 +39,7 @@ const HomeScreen = () => {
           place={activeLocation}
           setActiveLocation={setActiveLocation} 
         />
-      </View> */}
+      {/* </View> */}
     </SafeAreaView>
   )
 }
@@ -98,5 +101,8 @@ const styles = StyleSheet.create({
     top: '10%',
     left: '2%',
     zIndex: 0
+  },
+  search: {
+    position: 'absolute'
   }
 });

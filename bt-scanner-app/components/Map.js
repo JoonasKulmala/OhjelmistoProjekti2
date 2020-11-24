@@ -1,14 +1,16 @@
 import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Button, Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
-import SearchResults from './SearchResults'
+import SearchPage2 from './SearchPage2'
+import { mapStyle } from '../mapStyle'
+
+const LAT_DELTA = 0.001
+const LON_DELTA = 0.001
 
 const Map = ({ locations, setActiveLocation }) => {
   const [showRadius, setShowRadius] = useState(true)
   const [radiusButtonTitle, setRadiusButtonTitle] = useState('hide radius')
-  const [search, setSearch] = useState(null)
-  const [searchResults, setSearchResults] = useState(null)
 
   // luodaan referenssi, joka annetaan propsina MapView komponentille
   const mapRef = React.createRef()
@@ -27,77 +29,14 @@ const Map = ({ locations, setActiveLocation }) => {
     }
   }
 
-  // toimii
-  const animateToAkanapolku = () => {
-    mapRef.current.animateCamera({ 
-      center: {
-        latitude: 60.2997901,
-        longitude: 25.0592432
-      }
-    })
-  }
-
   const animateToGivenLocation = (latitude, longitude) => {
-    mapRef.current.animateCamera({
-      center: {
-        latitude: latitude,
-        longitude: longitude
-      }
-    })
+    mapRef.current.animateToRegion({
+      latitude,
+      longitude,
+      latitudeDelta: LAT_DELTA,
+      longitudeDelta: LON_DELTA
+    }, 2000)
   }
-
-  const filterSearchResults = () => {
-    console.log('searchword: ', search);
-    const results = locations.filter(l => l.name.toLowerCase().indexOf(search.toLowerCase()) !== -1)
-    setSearchResults(results)
-  }
-  // console.log(searchResults)
-  
-  const renderItem = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => animateToGivenLocation(item.location.lat, item.location.lon)}
-    >
-      <Text>{item.name}</Text>
-    </TouchableOpacity>
-  ) 
-
-  // Kartasta hieman selkeämpi
-  const mapStyle = [
-    {
-      "featureType": "administrative",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "transit",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    }
-  ]
 
   return (
     <View>
@@ -162,33 +101,13 @@ const Map = ({ locations, setActiveLocation }) => {
           title={radiusButtonTitle}
         />
       </View>
-      <View style={styles.navigationButton}>
-        <Button 
-          title="asd"
-          onPress={animateToAkanapolku}
+      <View 
+        style={{ position: 'absolute', left: '40%'}}>
+        <SearchPage2 
+          locations={locations} 
+          animateToGivenLocation={animateToGivenLocation}
         />
       </View>
-      {/* <View style={styles.search}>
-        <TextInput 
-          onChangeText={input => setSearch(input)}
-          value={search}
-        />
-        <Button
-          title="search"
-          onPress={() => {
-            filterSearchResults()
-            console.log('search results:', searchResults);
-          }}
-        />
-      </View> */}
-      {/* <View style={styles.searchResults}>
-        <FlatList 
-          data={searchResults}
-          renderItem={renderItem}
-          keyExtractor={item => String(item.id)}
-        />
-      </View> */}
-      <SearchResults />
     </View>
   )
 }
@@ -211,11 +130,6 @@ const styles = StyleSheet.create({
     top: '7%',
     left: '75%'
   },
-  searchResults: {
-    position: 'absolute',
-    top: '35%'
-  }
-  
 })
 
 export default Map
