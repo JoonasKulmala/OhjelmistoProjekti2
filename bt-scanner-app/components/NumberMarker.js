@@ -7,7 +7,7 @@ export default function NumberMarker({ location }) {
   return (
     <View style={styles.container}>
       <View style={styles.bubble}>
-        <Text style={styles.number}>{location.bt_devices[0].latest}</Text>
+        <Text style={styles.number}>{location.foundDevices}</Text>
       </View>
       <View style={styles.markerBottom}/>
     </View>

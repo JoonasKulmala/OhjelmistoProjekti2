@@ -64,10 +64,10 @@ const Map = ({ locations, setSelectedLocation }) => {
           ? locations.map(location => (
             <View key={location.id}>
               <Marker 
-                pinColor={pickPinColor(location.bt_devices.latest)}
+                // pinColor={pickPinColor(location.bt_devices.latest)}
                 coordinate={{
-                  latitude: location.location.lat,
-                  longitude: location.location.lon
+                  latitude: parseFloat(location.latitude),
+                  longitude: parseFloat(location.longitude)
                 }}
                 onPress={() => setSelectedLocation(location)}
               >
@@ -80,8 +80,8 @@ const Map = ({ locations, setSelectedLocation }) => {
                 <Circle 
                   fillColor='#62d255'
                   center={{
-                    latitude: location.location.lat,
-                    longitude: location.location.lon
+                    latitude: parseFloat(location.latitude),
+                    longitude: parseFloat(location.longitude)
                   }}
                   radius={15}
                 />
