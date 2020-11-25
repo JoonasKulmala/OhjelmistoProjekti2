@@ -63,10 +63,10 @@ const Map = ({ locations, setSelectedLocation }) => {
           ? locations.map(location => (
             <View key={location.id}>
               <Marker 
-                pinColor={pickPinColor(location.bt_devices.latest)}
+                // pinColor={pickPinColor(location.bt_devices.latest)}
                 coordinate={{
-                  latitude: location.location.lat,
-                  longitude: location.location.lon
+                  latitude: parseFloat(location.latitude),
+                  longitude: parseFloat(location.longitude)
                 }}
               >
                 {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
@@ -76,8 +76,8 @@ const Map = ({ locations, setSelectedLocation }) => {
                   onPress={() => setSelectedLocation(location)}
                 >
                   {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
-                  <Text>{location.name}</Text>
-                  <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
+                  <Text>{location.location}</Text>
+                  <Text>Devices found: {location.foundDevices} ({formattedDate()})</Text>
                   <Text 
                     onPress={() => console.log('Show more info..')}
                     style={{ color: 'blue' }}
@@ -91,8 +91,8 @@ const Map = ({ locations, setSelectedLocation }) => {
                 <Circle 
                   fillColor='#62d255'
                   center={{
-                    latitude: location.location.lat,
-                    longitude: location.location.lon
+                    latitude: parseFloat(location.latitude),
+                    longitude: parseFloat(location.longitude)
                   }}
                   radius={15}
                 />
