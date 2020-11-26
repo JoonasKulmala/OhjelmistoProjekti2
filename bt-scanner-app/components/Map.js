@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
 import RadiusButton from './RadiusButton'
+import NumberMarker from './NumberMarker'
 
 const Map = ({ locations, setSelectedLocation }) => {
-  const [showRadius, setShowRadius] = useState(true)
+  const [scanRadius, setScanRadius] = useState(false)
 
   // Kartasta hieman selkeämpi
   const mapStyle = [
@@ -63,36 +64,24 @@ const Map = ({ locations, setSelectedLocation }) => {
           ? locations.map(location => (
             <View key={location.id}>
               <Marker 
-                pinColor={pickPinColor(location.bt_devices.latest)}
+                // pinColor={pickPinColor(location.bt_devices.latest)}
                 coordinate={{
-                  latitude: location.location.lat,
-                  longitude: location.location.lon
+                  latitude: parseFloat(location.latitude),
+                  longitude: parseFloat(location.longitude)
                 }}
+                onPress={() => setSelectedLocation(location)}
               >
-                {/* Callout-komponentin avulla pystyy esittämään tietoa usean rivin verran
-                Markerin description-propsissa tämä ei oikein onnistunut */}
-                {/* Handler aktivoi sijainnin, jolloin avautuu Card-komponentti, jossa näkyvissä lisätietoa */}
-                <Callout
-                  onPress={() => setSelectedLocation(location)}
-                >
-                  {/* Calloutsubview https://github.com/react-native-maps/react-native-maps/issues/3363 */}
-                  <Text>{location.name}</Text>
-                  <Text>Devices found: {location.bt_devices[0].latest} ({formattedDate()})</Text>
-                  <Text 
-                    onPress={() => console.log('Show more info..')}
-                    style={{ color: 'blue' }}
-                  >
-                    Show more information
-                  </Text>
-                </Callout>
+                <NumberMarker 
+                  location={location}
+                />
               </Marker>
               {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
-              {showRadius ?
+              {scanRadius ?
                 <Circle 
                   fillColor='#62d255'
                   center={{
-                    latitude: location.location.lat,
-                    longitude: location.location.lon
+                    latitude: parseFloat(location.latitude),
+                    longitude: parseFloat(location.longitude)
                   }}
                   radius={15}
                 />
@@ -102,8 +91,8 @@ const Map = ({ locations, setSelectedLocation }) => {
           : null}
       </MapView>
       <RadiusButton 
-        showRadius={showRadius} 
-        setShowRadius={setShowRadius}
+        scanRadius={scanRadius} 
+        setScanRadius={setScanRadius}
       />
     </View>
   )

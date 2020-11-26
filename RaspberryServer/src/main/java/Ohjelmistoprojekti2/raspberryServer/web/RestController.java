@@ -23,15 +23,36 @@ public class RestController {
 	@Autowired
 	private RaspberryRepository repository;
 
-	//käytetään get-metodia laitteiden hakuun
+	//Tallennettujen tulosten haku kannasta GET-metodilla
 	@RequestMapping(value="/results", method = RequestMethod.GET)
 	public @ResponseBody List<Raspberry>getResults(){
 		return (List<Raspberry>) repository.findAll();
 	}
-	//Käytetään post-metodia uuden laitteen lisäämiseen
+	
+	//Tallennettujen laitteiden haku kannasta GET-metodilla
+	@RequestMapping(value="/api/raspberries", method = RequestMethod.GET)
+	public @ResponseBody List<Raspberry>getRaspberries(){
+		return (List<Raspberry>) repository.findAll();
+	}
+		
+	//Tallennetun tuloksen lisääminen kantaan POST-metodilla
 	@RequestMapping(value="/results", method = RequestMethod.POST)
+	public @ResponseBody Raspberry addNewEntry(@RequestBody Raspberry raspberry) {
+		repository.save(raspberry);													// TO DO: uusi repo
+		return raspberry;
+	}
+	
+	//Uuden laitteen lisääminen kantaan POST-metodilla
+	@RequestMapping(value="/api/raspberries", method = RequestMethod.POST)
 	public @ResponseBody Raspberry addNewDevice(@RequestBody Raspberry raspberry) {
 		repository.save(raspberry);
 		return raspberry;
 	}
+	
+//	//Tallennetun laitteen poistaminen kannasta DELETE-metodilla							// TO DO: metodi
+//		@RequestMapping(value="/api/raspberries", method = RequestMethod.DELETE)
+//		public @ResponseBody Raspberry removeDevice(@RequestBody Raspberry raspberry) {
+//			repository.delete(raspberry);
+//			return raspberry;
+//		}
 }

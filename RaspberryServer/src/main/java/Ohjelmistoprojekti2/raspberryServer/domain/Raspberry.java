@@ -1,4 +1,5 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -6,43 +7,38 @@ import javax.persistence.*;
 @Entity
 public class Raspberry {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Long id;
 	private String location;
-	private int foundDevices;
 	private String latitude;
 	private String longitude;
 	private String imageUrl;
 
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
 
-	public Raspberry(){
+	public Raspberry() {
 		super();
 	}
 
-	public Raspberry(String location, int foundDevices, String latitude, String longitude) {
+	public Raspberry(String location, String latitude, String longitude) {
 		super();
 		this.location = location;
-		this.foundDevices = foundDevices;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl) {
+
+	public Raspberry(String location, String latitude, String longitude, String imageUrl) {
 		this.location = location;
-		this.foundDevices = foundDevices;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
 	}
-	
-	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl) {
+
+	// konstruktori, jossa otettu mukaan imageUrl-attribuutti
+	public Raspberry(String location, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl) {
 		this.location = location;
-		this.foundDevices = foundDevices;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.timeStamp = timeStamp;
@@ -50,7 +46,7 @@ public class Raspberry {
 	}
 
 	public Long getId() {
-		 return id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -63,14 +59,6 @@ public class Raspberry {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public int getFoundDevices()  {
-		return foundDevices;
-	}
-
-	public void setFoundDevices(int foundDevices) {
-		this.foundDevices = foundDevices;
 	}
 
 	public String getLatitude() {
@@ -107,22 +95,19 @@ public class Raspberry {
 
 	@Override
 	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices =" +foundDevices+"]";
+		return "Raspberry [id=" + id + ", location=" + location + "]";
 	}
 
-//lisätty toString-metodi kuvien linkkejä varten
+	// lisätty toString-metodi kuvien linkkejä varten
 	/*
-	@Override
-	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" + imageUrl + ", timeStamp=" + timeStamp + "]";
-	}
-	*/
-/*
-	@Override
-	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + ", foundDevices=" + foundDevices + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]";
-	}
-	*/
-	
+	 * @Override public String toString() { return "Raspberry [id=" + id +
+	 * ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" +
+	 * imageUrl + ", timeStamp=" + timeStamp + "]"; }
+	 */
+	/*
+	 * @Override public String toString() { return "Raspberry [id=" + id +
+	 * ", location=" + location + ", foundDevices=" + foundDevices + ", latitude=" +
+	 * latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]"; }
+	 */
+
 }
