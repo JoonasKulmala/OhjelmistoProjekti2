@@ -11,6 +11,7 @@ public class TimeStamp {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long dateId;
 	private String timeStamp;
+	private int foundDevices;
 
 	@JsonBackReference
 	@ManyToOne
@@ -20,9 +21,10 @@ public class TimeStamp {
 		super();
 	}
 	
-	public TimeStamp(String timeStamp, Raspberry refDateRasp) {
+	public TimeStamp(String timeStamp, int foundDevices, Raspberry refDateRasp) {
 		super();
 		this.timeStamp = timeStamp;
+		this.foundDevices = foundDevices;
 		this.refDateRasp = refDateRasp;
 	}
 
@@ -40,6 +42,14 @@ public class TimeStamp {
 
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public int getFoundDevices() {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
 	}
 
 	public Raspberry getRefDateRasp() {
