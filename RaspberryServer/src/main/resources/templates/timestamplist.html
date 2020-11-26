@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TimeStamps</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>List of timestamps</h1>
+	<table>
+		<tr>
+			<th>TimeStamps</th>
+		</tr>
+
+		<tr th:each = "timeStamp : ${timeStamps}">
+			<td th:text="${timeStamp.timeStamp}">timeStamp:</td>
+		</tr>
+	</table>
+	<a href="/timestamplist">Add Time</a>
+</body>
+</html>

@@ -46,7 +46,7 @@ public class RaspberryServerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository rRepo, TimeStampRepository tRepo) {
+	public CommandLineRunner productDemo(RaspberryRepository rRepo, TimeStampRepository tRepo, UserRepository uRepo) {
 		return (args) -> {
 			log.info("Saving information");
 			
@@ -72,6 +72,9 @@ public class RaspberryServerApplication {
             tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", rRepo.findByLocation("Presidentinlinna").get(0)));
             tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", rRepo.findByLocation("Presidentinlinna").get(0)));
 
+            User admin = new User("admin", "$2a$04$ZVPp4IY7rkcgQjtRwUltxOh9XTZvln6QSvAjZV5Q/mA8JtXOp1vra", "admin@admin.com", "ADMIN");
+            uRepo.save(admin);
+            		
 			log.info("Fetching data");
 			for (Raspberry raspberry : rRepo.findAll()) {
 				log.info(raspberry.toString());
