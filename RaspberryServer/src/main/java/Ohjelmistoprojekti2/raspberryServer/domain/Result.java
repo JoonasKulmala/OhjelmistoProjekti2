@@ -4,48 +4,38 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Raspberry {
+public class Result {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 
 	private Long id;
+	private int foundDevices;
 	private String location;
-	private int foundDevices; //->Result
 	private String latitude;
 	private String longitude;
 	private String imageUrl;
 	private String explanation;
+	private String timestamp;
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
-	private List<TimeStamp> timeStamp; // Change to: dateAdded
+	private List<TimeStamp> timeStamp;
 
-	public Raspberry(){
+	public Result(){
 		super();
 	}
 
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, String explanation) {
+	public Result(String location, String latitude, String longitude, String imageUrl, String explanation, int foundDevices) {
 		super();
-		this.location = location;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation) {
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
 	}
-	
-	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl, String explanation) {
+
+	public Result(String location, int foundDevices) {
 		this.location = location;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.timeStamp = timeStamp;
-		this.imageUrl = imageUrl;
-		this.explanation = explanation;
+		this.foundDevices = foundDevices;
 	}
 
 	public Long getId() {
@@ -56,6 +46,22 @@ public class Raspberry {
 		this.id = id;
 	}
 
+	public int getFoundDevices()  {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
+	}
+
+	public List<TimeStamp> getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(List<TimeStamp> timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
 	public String getLocation() {
 		return location;
 	}
@@ -63,14 +69,6 @@ public class Raspberry {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-//	public int getFoundDevices()  {
-//		return foundDevices;
-//	}
-//
-//	public void setFoundDevices(int foundDevices) {
-//		this.foundDevices = foundDevices;
-//	}
 
 	public String getLatitude() {
 		return latitude;
@@ -88,14 +86,6 @@ public class Raspberry {
 		this.longitude = longitude;
 	}
 
-	public List<TimeStamp> getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(List<TimeStamp> timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -103,7 +93,7 @@ public class Raspberry {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
+
 	public String getExplanation() {
 		return explanation;
 	}
@@ -112,9 +102,17 @@ public class Raspberry {
 		this.explanation = explanation;
 	}
 
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+	
 	@Override
 	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + "]";
+		return "Result [id=" + id + ", foundDevices =" +foundDevices+"]";
 	}
 	
 }
