@@ -1,6 +1,6 @@
 import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { pickPinColor, formattedDate } from '../utility'
 import SearchPage2 from './SearchPage2'
 import { mapStyle } from '../mapStyle'
@@ -95,14 +95,13 @@ const Map = ({ locations, setActiveLocation }) => {
             ))
           : null}
       </MapView>
-      <View style={styles.radiusButton}>
+      {/* <View style={styles.radiusButton}>
         <Button 
           onPress={toggleRadius}
           title={radiusButtonTitle}
         />
-      </View>
-      <View 
-        style={{ position: 'absolute', left: '40%'}}>
+      </View> */}
+      <View style={styles.searchIcon}>
         <SearchPage2 
           locations={locations} 
           animateToGivenLocation={animateToGivenLocation}
@@ -130,6 +129,11 @@ const styles = StyleSheet.create({
     top: '7%',
     left: '75%'
   },
+  searchIcon: {
+    position: 'absolute',
+    top: '1%',
+    left: '1%'
+  }
 })
 
 export default Map

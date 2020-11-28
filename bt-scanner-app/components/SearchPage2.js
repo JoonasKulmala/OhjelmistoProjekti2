@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Icon } from 'react-native-elements'
 
 export default function SearchPage2({ locations, animateToGivenLocation }) {
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState(null)
+  const [showSearchBar, setShowSearchBar] = useState(false)
 
   const renderItem = ({ item }) => {
-    // console.log(item)
+    if (searchInput === '') {
+      return null
+    }
+    
     return (
       <TouchableOpacity 
         style={styles.flatListItem}
@@ -36,33 +41,41 @@ export default function SearchPage2({ locations, animateToGivenLocation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchBar}
-        onChangeText={(e) => {
-          console.log(e)
-          setSearchInput(e)
-          filterSearchResults(e)
-        }}
-        value={searchInput}
-      />
-      <FlatList 
-        data={searchResults}
-        renderItem={renderItem}
-        keyExtractor={item => String(item.id)}
-      />
+      <TouchableOpacity
+        style={styles.searchIcon}
+        onPress={() => setShowSearchBar(!showSearchBar)}
+      >
+        <Icon name="search" color="white" />
+      </TouchableOpacity>
+      {showSearchBar ?
+        <View>
+          <TextInput
+            style={styles.searchBar}
+            onChangeText={(e) => {
+              console.log(e)
+              setSearchInput(e)
+              filterSearchResults(e)
+            }}
+            value={searchInput}
+          />
+          <FlatList 
+            data={searchResults}
+            renderItem={renderItem}
+            keyExtractor={item => String(item.id)}
+          />
+        </View> : null}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    // position: 'absolute'
-    // flex: 1,
-    alignItems: 'center'
+    flexDirection: 'row',
+    // marginTop: '5%',
+    // marginLeft: '5%'
   },
   searchBar: {
-    marginTop: 10,
-    width: '60%',
+    width: 200,
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: '#ffffff',
@@ -76,5 +89,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
     borderBottomColor: 'black',
     borderBottomWidth: 1
+  },
+  searchIcon: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#2296f3',
+    borderRadius: 20,
+    padding: 8,
+    marginRight: '5%'
   }
 })
