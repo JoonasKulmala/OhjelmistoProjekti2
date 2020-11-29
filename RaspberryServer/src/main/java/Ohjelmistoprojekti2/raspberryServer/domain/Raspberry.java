@@ -14,6 +14,9 @@ public class Raspberry {
 	private String latitude;
 	private String longitude;
 	private String imageUrl;
+	private String explanation;
+	private String dateAdded;
+	private int foundDevices;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
@@ -22,27 +25,29 @@ public class Raspberry {
 		super();
 	}
 
-	public Raspberry(String location, String latitude, String longitude) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String explanation) {
 		super();
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-
-	public Raspberry(String location, String latitude, String longitude, String imageUrl) {
+	
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation) {
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
+		this.explanation = explanation;
 	}
-
-	// konstruktori, jossa otettu mukaan imageUrl-attribuutti
-	public Raspberry(String location, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl) {
+	
+	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation, String dateAdded) {
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.timeStamp = timeStamp;
 		this.imageUrl = imageUrl;
+		this.explanation = explanation;
+		this.dateAdded = dateAdded;
 	}
 
 	public Long getId() {
@@ -60,6 +65,14 @@ public class Raspberry {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+//	public int getFoundDevices()  {
+//		return foundDevices;
+//	}
+//
+//	public void setFoundDevices(int foundDevices) {
+//		this.foundDevices = foundDevices;
+//	}
 
 	public String getLatitude() {
 		return latitude;
@@ -92,10 +105,9 @@ public class Raspberry {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
-	@Override
-	public String toString() {
-		return "Raspberry [id=" + id + ", location=" + location + "]";
+	
+	public String getExplanation() {
+		return explanation;
 	}
 
 	// lisätty toString-metodi kuvien linkkejä varten
@@ -110,4 +122,21 @@ public class Raspberry {
 	 * latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]"; }
 	 */
 
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
+	}
+	
+	public String getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(String dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
+	@Override
+	public String toString() {
+		return "Raspberry [id=" + id + ", location=" + location + "]";
+	}
+	
 }

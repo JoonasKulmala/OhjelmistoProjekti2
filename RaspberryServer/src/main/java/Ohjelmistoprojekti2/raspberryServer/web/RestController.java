@@ -13,43 +13,53 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import Ohjelmistoprojekti2.raspberryServer.domain.Raspberry;
 import Ohjelmistoprojekti2.raspberryServer.domain.RaspberryRepository;
+import Ohjelmistoprojekti2.raspberryServer.domain.Result;
+import Ohjelmistoprojekti2.raspberryServer.domain.ResultRepository;
 
 import org.springframework.ui.Model;
 
 @CrossOrigin
 @Controller
 public class RestController {
-	
+
 	@Autowired
 	private RaspberryRepository repository;
+	@Autowired
+	private ResultRepository repository2;
 
-	//Tallennettujen tulosten haku kannasta GET-metodilla
-	@RequestMapping(value="/results", method = RequestMethod.GET)
-	public @ResponseBody List<Raspberry>getResults(){
-		return (List<Raspberry>) repository.findAll();
+	// Hakee kaikki nykyiset TULOKSET tietokannasta
+	@RequestMapping(value="/api/results", method = RequestMethod.GET)
+	public @ResponseBody List<Result>getResults(){
+		return (List<Result>) repository2.findAll();
 	}
 	
-	//Tallennettujen laitteiden haku kannasta GET-metodilla
+	// Hakee kaikki nykyiset LAITTEET tietokannasta
 	@RequestMapping(value="/api/raspberries", method = RequestMethod.GET)
 	public @ResponseBody List<Raspberry>getRaspberries(){
 		return (List<Raspberry>) repository.findAll();
 	}
+	
+	@CrossOrigin
+  	@RequestMapping(value = "/api/raspberries/{location}", method = RequestMethod.GET)
+  	public @ResponseBody  List<Raspberry> findSingleRaspberry(@PathVariable String location) { 
+  		return repository.findByLocation(location); 
+  	}
 		
-	//Tallennetun tuloksen lisääminen kantaan POST-metodilla
-	@RequestMapping(value="/results", method = RequestMethod.POST)
-	public @ResponseBody Raspberry addNewEntry(@RequestBody Raspberry raspberry) {
-		repository.save(raspberry);													// TO DO: uusi repo
-		return raspberry;
+	// Lisää uuden TULOKSEN
+	@RequestMapping(value="/api/results", method = RequestMethod.POST)
+	public @ResponseBody Result addNewResult(@RequestBody Result result) {
+		repository2.save(result);													// TO DO: uusi repo
+		return result;
 	}
 	
-	//Uuden laitteen lisääminen kantaan POST-metodilla
+	// Lisää uuden LAITTEEN
 	@RequestMapping(value="/api/raspberries", method = RequestMethod.POST)
-	public @ResponseBody Raspberry addNewDevice(@RequestBody Raspberry raspberry) {
+	public @ResponseBody Raspberry addNewRaspberry(@RequestBody Raspberry raspberry) {
 		repository.save(raspberry);
 		return raspberry;
 	}
 	
-//	//Tallennetun laitteen poistaminen kannasta DELETE-metodilla							// TO DO: metodi
+//	// Poistaa tallennetun LAITTEEN tietokannasta
 //		@RequestMapping(value="/api/raspberries", method = RequestMethod.DELETE)
 //		public @ResponseBody Raspberry removeDevice(@RequestBody Raspberry raspberry) {
 //			repository.delete(raspberry);

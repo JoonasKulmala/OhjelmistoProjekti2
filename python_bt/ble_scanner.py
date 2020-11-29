@@ -9,19 +9,20 @@ import socket
 from bluetooth.bluez import discover_devices
 # Return MAC address, if fail generate random string
 from uuid import getnode as get_mac
-# Capped at 50,000 monthly requests, added error handling for slow response
+# Capped at 50,000 monthly requests
 import ipinfo
 from ipinfo import details
 from requests.exceptions import ConnectTimeout
 
 
 # Endpoint listing every scan result
-RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
-# RESULTS_URL = 'http://localhost:8080/results'
+# RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
+RESULTS_URL = 'http://localhost:8080/api/results'
+
 
 # Endpoint listing each individual Raspberry Pi
-RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
-# RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
+# RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
+RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
 
 
 def ble_scan():
@@ -30,7 +31,7 @@ def ble_scan():
     ble_devices = bluetooth.discover_devices(lookup_names=True)
     print('Devices found: %s' % len(ble_devices))
 
-    # Name, MAC address of each scanned device
+    # Name, MAC address of each scanned ble device
     for addr, name in ble_devices:
         print('name :', name, 'address :', addr)
 
@@ -62,12 +63,11 @@ def ble_scan():
 
             break
         except ConnectTimeout:
-            print('Slow response, attempting reconnect...')
-            return True
+            pass
 
     # Data in JSON format
     objToSend = {'location': hostname, 'foundDevices': len(
-        ble_devices), 'timestamp': readable, 'latitude': details.latitude, 'longitude': details.longitude}  # Timestamp not working
+        ble_devices), 'dateAdded': readable, 'timestamp': readable, 'latitude': details.latitude, 'longitude': details.longitude}  # Timestamp not working 'timeStamp': readable,
 
     # List existing Raspberries
     data = getExistingRaspberries()
