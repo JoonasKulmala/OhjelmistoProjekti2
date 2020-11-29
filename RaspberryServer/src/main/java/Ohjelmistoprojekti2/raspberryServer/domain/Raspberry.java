@@ -10,15 +10,16 @@ public class Raspberry {
 
 	private Long id;
 	private String location;
-	private int foundDevices; //->Result
 	private String latitude;
 	private String longitude;
 	private String imageUrl;
 	private String explanation;
+	private String dateAdded;
+	private int foundDevices;
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
-	private List<TimeStamp> timeStamp; // Change to: dateAdded
+	private List<TimeStamp> timeStamp;
 
 	public Raspberry(){
 		super();
@@ -36,16 +37,17 @@ public class Raspberry {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
+		this.explanation = explanation;
 	}
 	
 	//konstruktori, jossa otettu mukaan imageUrl-attribuutti
-	public Raspberry(String location, int foundDevices, String latitude, String longitude, List<TimeStamp> timeStamp, String imageUrl, String explanation) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation, String dateAdded) {
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.timeStamp = timeStamp;
 		this.imageUrl = imageUrl;
 		this.explanation = explanation;
+		this.dateAdded = dateAdded;
 	}
 
 	public Long getId() {
@@ -88,13 +90,13 @@ public class Raspberry {
 		this.longitude = longitude;
 	}
 
-	public List<TimeStamp> getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(List<TimeStamp> timeStamp) {
-		this.timeStamp = timeStamp;
-	}
+//	public List<TimeStamp> getTimeStamp() {
+//		return timeStamp;
+//	}
+//
+//	public void setTimeStamp(List<TimeStamp> timeStamp) {
+//		this.timeStamp = timeStamp;
+//	}
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -110,6 +112,14 @@ public class Raspberry {
 
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
+	}
+	
+	public String getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(String dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 
 	@Override

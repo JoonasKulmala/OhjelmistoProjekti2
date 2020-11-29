@@ -32,10 +32,22 @@ public class Result {
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
 	}
-
-	public Result(String location, int foundDevices) {
+	//tämäkö??? preadded data entry
+	public Result(String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation, String timestamp) {
 		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
 		this.foundDevices = foundDevices;
+		this.explanation = explanation;
+		this.timestamp = timestamp;
+	}
+	
+	public Result(Long id, String location, int foundDevices, String latitude, String longitude, String imageUrl, String explanation) {
+		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getId() {
@@ -44,14 +56,6 @@ public class Result {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getFoundDevices()  {
-		return foundDevices;
-	}
-
-	public void setFoundDevices(int foundDevices) {
-		this.foundDevices = foundDevices;
 	}
 
 	public List<TimeStamp> getTimeStamp() {
@@ -68,6 +72,14 @@ public class Result {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public int getFoundDevices()  {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
 	}
 
 	public String getLatitude() {
@@ -101,7 +113,7 @@ public class Result {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
-
+	
 	public String getTimestamp() {
 		return timestamp;
 	}
@@ -109,10 +121,18 @@ public class Result {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
+
+//	public String getTimestamp() {
+//		return timestamp;
+//	}
+//
+//	public void setTimestamp(String timestamp) {
+//		this.timestamp = timestamp;
+//	}
 	
 	@Override
 	public String toString() {
-		return "Result [id=" + id + ", foundDevices =" +foundDevices+"]";
+		return "Result [id=" + id + ", location =" +location+"]";
 	}
 	
 }
