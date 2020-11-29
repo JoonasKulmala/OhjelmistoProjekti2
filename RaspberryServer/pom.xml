@@ -19,7 +19,6 @@
 	</properties>
 
 	<dependencies>
-<<<<<<< HEAD
 	<dependency>
 	    <groupId>org.thymeleaf.extras</groupId>
 	    <artifactId>thymeleaf-extras-java8time</artifactId>
@@ -32,8 +31,6 @@
 		<groupId>org.thymeleaf.extras</groupId>
 		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
-		  <dependency>
-=======
 		 <!--<dependency>
 >>>>>>> 1cef87ed5b54e062baffd30a7ccf1c7a74d6c56c
            	<groupId>org.postgresql</groupId>
@@ -61,11 +58,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-<<<<<<< HEAD
-	<!--  	<dependency>
-=======
 		<dependency>
->>>>>>> 1cef87ed5b54e062baffd30a7ccf1c7a74d6c56c
           <groupId>com.h2database</groupId>
           <artifactId>h2</artifactId>
           <scope>runtime</scope>
