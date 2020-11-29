@@ -9,6 +9,8 @@ export default function Search({ locations, animateToGivenLocation }) {
 
   console.log(locations)
   const renderItem = ({ item }) => {
+    
+    // Ei näytä listaa, jos hakukenttä on tyhjä
     if (searchInput === '') {
       return null
     }
@@ -33,7 +35,6 @@ export default function Search({ locations, animateToGivenLocation }) {
     const searchResults = locations.filter(location => {
       const regex = new RegExp(searchInput, 'i')
       console.log(`location: ${location}, regex: ${regex}`)
-      // console.log(`match??, ${location.name.match(regex)}`)
       return location.location.match(regex)
     })
 

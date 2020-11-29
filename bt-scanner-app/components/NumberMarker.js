@@ -18,12 +18,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center'
   },
-  // flex: 0 mukauttaa View-elementin koon sen sisällön mukaiseksi
   bubble: {
     flex: 0, 
     padding: 5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
     backgroundColor: '#ffffff',
     borderRadius: 7,
     borderWidth: 1.5
@@ -35,7 +32,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     height: 5,
     width: 3,
-    // borderTopColor: '#ffffff',
-    // borderWidth: 4
   }
 })

@@ -9,7 +9,6 @@ import { formatTimestamp } from '../utility'
 export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
   if (!selectedLocation) return null
   
-  const time = new Date().toISOString()
   const barChartTestData = [5, 2, 3, 5, 7, 11, 2, 0]
 
   // const xAxisData = [
@@ -64,7 +63,6 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
     <View style={styles.container}>
       <Card style={styles.infoCard}>
         <View style={styles.top}>
-          {/* <Text testID="placeInfo_name">{place.name}</Text> */}
           <Text style={styles.locationName}>{selectedLocation.location}</Text>
           <Icon
             color="red"
@@ -72,13 +70,6 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
             onPress={() => setSelectedLocation(null)}
           />
         </View>
-        {/* <Text style={{ paddingBottom: 5 }}>{time}</Text> */}
-        
-        {/*<Text style={styles.scanHistory}>Scan history</Text>
-        <Text testID="latestScan">{formattedDate()} - {selectedLocation.bt_devices[0].latest}</Text>
-        <Text testID="previousScan">15:00 - {selectedLocation.bt_devices["15:00"]}</Text>
-        <Text>14:30 - {selectedLocation.bt_devices["14:30"]}</Text> */}
-        
         <BarChart
           xAccessor={({ item }) => item}
           style={{ height: 125 }} 
@@ -117,8 +108,5 @@ const styles = StyleSheet.create({
   },
   scanHistory: {
     marginBottom: 5
-  }, 
-  icon: {
-    
   }
 })
