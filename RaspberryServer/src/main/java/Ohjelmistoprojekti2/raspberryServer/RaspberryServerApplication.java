@@ -46,15 +46,15 @@ public class RaspberryServerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner productDemo(RaspberryRepository rRepo, TimeStampRepository tRepo, ResultRepository xRepo) {
+	public CommandLineRunner productDemo(RaspberryRepository rRepo, TimeStampRepository tRepo) {
 		return (args) -> {
 			log.info("Saving information");
 			
 			rRepo.deleteAll();
 			tRepo.deleteAll();
-			xRepo.deleteAll();
+			//xRepo.deleteAll();
 			
-			xRepo.save(new Result("Suomenlinna", 111));
+			//xRepo.save(new Result("Suomenlinna", 111));
 			
 			rRepo.save(new Raspberry("Suomenlinna", 5, "60.1454","24.98814", "http://materialbank.myhelsinki.fi/deployedFiles/6559a1a744601093ae355f8d05e3a896.jpg", "Tähän lisätietoa"));
 			rRepo.save(new Raspberry("Sibelius-monumentti", 25, "60.182113","24.913422", "http://materialbank.myhelsinki.fi/deployedFiles/7e35116c75d46d11b3cb9c11c47513d7.jpg", "Tähän lisätietoa"));
