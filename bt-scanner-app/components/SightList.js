@@ -39,12 +39,6 @@ export default class SightList extends Component {
     //Icon poistettu, tulevassa backendissä linkki kuvapankin kuvaan
     return (
       <View style={{ flex: 1}}>
-        <Header
-          placement="center"
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          centerComponent={{ text: 'Sights', style: { color: '#fff' } }}
-          rightComponent={{ icon: 'home', color: '#fff' }}
-        />
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
