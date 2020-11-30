@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList, Text, View, StyleSheet, Icon } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, StyleSheet, Icon, Avatar} from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
+//import SightInfo from './SightInfo';
 
 /* To-do:
-- vaihda fetch backendiin
-- headeriin linkit
+- headeriin toimivat linkit ja lisätietoa
+- hakee komponentin SightList
 */
 
 //Listaa kaikki käyntikohteet kohteet
 export default class SightList extends Component {
+
+  _onPressButton() {
+    alert('Lisätietoa kohteesta ei ole vielä saatavilla')
+ }
 
   constructor(props) {
     super(props);
@@ -19,12 +24,12 @@ export default class SightList extends Component {
     };
   }
 
-//hakee json-dataa myhelsinki API:sta
+//hakee json-dataaherokun backendistä
   componentDidMount() {
-    fetch('http://open-api.myhelsinki.fi/v1/places/')
+    fetch('https://raspberrybackend.herokuapp.com/results')
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ data: json.data });
+        this.setState({ data: json});
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -36,7 +41,7 @@ export default class SightList extends Component {
     const { data, isLoading } = this.state;
 
 
-    //Icon poistettu, tulevassa backendissä linkki kuvapankin kuvaan
+    //Listaa nähtävyydet, jatkossa painamalla kohdetta, käyttäjä saa siitä lisätietoa
     return (
       <View style={{ flex: 1}}>
         {isLoading ? <ActivityIndicator/> : (
@@ -44,10 +49,10 @@ export default class SightList extends Component {
             data={data}
             keyExtractor={({ id }) => id}
             renderItem={({ item }) => (
-              <ListItem>
-                <ListItem.Content>
-                  <ListItem.Title>{item.name.fi}</ListItem.Title>
-                 </ListItem.Content>
+              <ListItem onPress={this._onPressButton()}>
+                  <ListItem.Content>
+                    <ListItem.Title>{item.location}</ListItem.Title>
+                   </ListItem.Content>
               <ListItem.Chevron />
             </ListItem>
             )}
