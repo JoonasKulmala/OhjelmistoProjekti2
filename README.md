@@ -1,6 +1,6 @@
 # Team IdeaaVailla - Ohjelmistoprojekti 2
-[![Website](https://img.shields.io/static/v1?label=spring&color=brightgreen)](https://spring.io/)
-[![Website](https://img.shields.io/static/v1?label=bluetooth&color=blue](https://www.bluetooth.com/)
+[![Website1](https://img.shields.io/badge/-spring-brightgreen)](https://spring.io/)
+[![Website2](https://img.shields.io/badge/-bluetooth-blue](https://www.bluetooth.com/)
 
 ## Table of contents
 
