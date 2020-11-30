@@ -1,5 +1,6 @@
 package Ohjelmistoprojekti2.raspberryServer.web;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,5 +80,11 @@ public class RaspberryController {
 			}
 			raspRepo.save(raspberry); // save osaa tehdä tarpeen mukaan SQL insertin tai updaten
 			return "redirect:/raspberrylist";
+		}
+		
+		@GetMapping("/")
+		public String date(Model model) {
+			 model.addAttribute("localDate", LocalDate.now());
+			 return "date";
 		}
 }

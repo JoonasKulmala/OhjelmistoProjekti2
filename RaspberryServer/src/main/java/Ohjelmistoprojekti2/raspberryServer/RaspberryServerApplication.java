@@ -4,6 +4,8 @@ import Ohjelmistoprojekti2.raspberryServer.domain.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.sql.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -53,10 +55,10 @@ public class RaspberryServerApplication {
 			rRepo.deleteAll();
 			tRepo.deleteAll();
 			
-			rRepo.save(new Raspberry("Suomenlinna", "60.1454","24.98814", "http://materialbank.myhelsinki.fi/deployedFiles/6559a1a744601093ae355f8d05e3a896.jpg"));
-			rRepo.save(new Raspberry("Sibelius-monumentti", "60.182113","24.913422", "http://materialbank.myhelsinki.fi/deployedFiles/7e35116c75d46d11b3cb9c11c47513d7.jpg"));
-			rRepo.save(new Raspberry("Rautatieasema", "60.171873","24.941422", "http://materialbank.myhelsinki.fi/deployedFiles2/0f5ca579a913dcccba04e0a24687d682.jpg" ));
-			rRepo.save(new Raspberry("Presidentinlinna", "60.168389","24.956342", "https://www.presidentti.fi/wp-content/uploads/2018/08/IMG_4695-1080x560.jpg"));
+			rRepo.save(new Raspberry("Suomenlinna", "60.1454","24.98814", "http://materialbank.myhelsinki.fi/deployedFiles/6559a1a744601093ae355f8d05e3a896.jpg","Beepboop"));
+			rRepo.save(new Raspberry("Sibelius-monumentti", "60.182113","24.913422", "http://materialbank.myhelsinki.fi/deployedFiles/7e35116c75d46d11b3cb9c11c47513d7.jpg", "testi"));
+			rRepo.save(new Raspberry("Rautatieasema", "60.171873","24.941422", "http://materialbank.myhelsinki.fi/deployedFiles2/0f5ca579a913dcccba04e0a24687d682.jpg", "selitystä" ));
+			rRepo.save(new Raspberry("Presidentinlinna", "60.168389","24.956342", "https://www.presidentti.fi/wp-content/uploads/2018/08/IMG_4695-1080x560.jpg", "paskaa"));
 
 			tRepo.save(new TimeStamp("Mon Sep 28 12:54:43 2020", 5, rRepo.findByLocation("Suomenlinna").get(0)));
 			tRepo.save(new TimeStamp("Mon Sep 28 11:54:43 2020", 7, rRepo.findByLocation("Suomenlinna").get(0)));

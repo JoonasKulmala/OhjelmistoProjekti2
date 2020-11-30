@@ -36,6 +36,8 @@
 			<th>Latitude:</th>
 			<th>Longitude:</th>
 			<th>ImageUrl:</th>
+			<th>Explanation:</th>
+			<th>Date added:</th>
 			<th>Activity</th>
 			<th sec:authorize="hasRole('ADMIN')"> </th>
 		</tr>
@@ -47,6 +49,8 @@
 			<td th:text="${raspberry.latitude}"></td>
 			<td th:text="${raspberry.longitude}"></td>
 			<td th:text="${raspberry.imageUrl}"></td>
+			<td th:text="${raspberry.explanation}"></td>
+			<td th:text="${raspberry.date}"></td>
 			<td th:text="${raspberry.timeStamp}"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${raspberry.id})}">Delete</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${raspberry.id})}">Edit</a></td>

@@ -13,7 +13,7 @@
 	<form action="#" th:action="@{/save}" th:object=${raspberry} method="post">
 	<p><input type="hidden" th:field="${raspberry.id}" /></p>
 	<p Location: <input type="text" th:field="${raspberry.location}" class="form-control"/></p>
-	<p Found devices: <input type="text" th:field="${raspberry.foundDevices}" class="form-control"/></p>
+	<p Found devices: <input type="hidden" th:field="${raspberry.foundDevices}" class="form-control"/></p>
 	<p Latitude: <input type="text" th:field="${raspberry.latitude}" class="form-control"/></p>
 	<p Longitude: <input type="text" th:field="${raspberry.longitude}" class="form-control"/></p>
 	<p Image: <input type="text" th:field="${raspberry.imageUrl}" class="form-control"/></p>

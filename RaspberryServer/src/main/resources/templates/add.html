@@ -37,20 +37,17 @@
 				<td><input type="text" id="imageUrl" th:field="*{imageUrl}" class="form-control"/></td>
 				<td th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Error</td>
 			</tr>
+			</tr><tr>
+				<td><label for="explanation">Explanation: </label></td>
+				<td><input type="text" id="explanation" th:field="*{explanation}" class="form-control"/></td>
+				<td th:if="${#fields.hasErrors('explanation')}" th:errors="*{explanation}">Error</td>
+			</tr>
 			<tr>
-				
 				<td><label for="timeStamp">Date: </label></td>
-					<td><p th:text="${#temporals.formatISO(java8Instant)}"></p></td>
-				
+				<td><input type="date" id="timeStamp" th:field="*{timeStamp}" class="form-control"/></td>
 			</tr>
 			
-		<!-- 	<tr>
-				<td><label for="timeStamp">TimeStamp: </label></td>
-				<td><input type="text" id="timeStamp" th:field="*{timeStamp}" class="form-control"/></td>
-				<td th:if="${#fields.hasErrors('timeStamp')}" th:errors="*{timeStamp}">Error</td>
-			</tr> -->
-			
-			<div style="clear: both; display: block; height: 10px;"> </div>
+			<div style="clear: both; display: block; height: 10px;"> 
 			<input type="submit" value="Save">
 		</form>
     
