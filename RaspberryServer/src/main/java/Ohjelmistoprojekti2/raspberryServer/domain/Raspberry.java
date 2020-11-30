@@ -66,14 +66,6 @@ public class Raspberry {
 		this.location = location;
 	}
 
-//	public int getFoundDevices()  {
-//		return foundDevices;
-//	}
-//
-//	public void setFoundDevices(int foundDevices) {
-//		this.foundDevices = foundDevices;
-//	}
-
 	public String getLatitude() {
 		return latitude;
 	}
@@ -110,18 +102,6 @@ public class Raspberry {
 		return explanation;
 	}
 
-	// lisätty toString-metodi kuvien linkkejä varten
-	/*
-	 * @Override public String toString() { return "Raspberry [id=" + id +
-	 * ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" +
-	 * imageUrl + ", timeStamp=" + timeStamp + "]"; }
-	 */
-	/*
-	 * @Override public String toString() { return "Raspberry [id=" + id +
-	 * ", location=" + location + ", foundDevices=" + foundDevices + ", latitude=" +
-	 * latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]"; }
-	 */
-
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
@@ -133,10 +113,31 @@ public class Raspberry {
 	public void setDateAdded(String dateAdded) {
 		this.dateAdded = dateAdded;
 	}
+	
+	public int getFoundDevices() {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
+	}
 
 	@Override
 	public String toString() {
 		return "Raspberry [id=" + id + ", location=" + location + "]";
 	}
+	
+	// lisätty toString-metodi kuvien linkkejä varten
+		/*
+		 * @Override public String toString() { return "Raspberry [id=" + id +
+		 * ", location=" + location + ", foundDevices=" + foundDevices + ", imageUrl=" +
+		 * imageUrl + ", timeStamp=" + timeStamp + "]"; }
+		 */
+		/*
+		 * @Override public String toString() { return "Raspberry [id=" + id +
+		 * ", location=" + location + ", foundDevices=" + foundDevices + ", latitude=" +
+		 * latitude + ", longitude=" + longitude + ", imageUrl=" + imageUrl + "]"; }
+		 */
+
 	
 }
