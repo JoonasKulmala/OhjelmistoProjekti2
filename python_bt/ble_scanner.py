@@ -7,9 +7,9 @@ import requests
 import urllib.request
 import socket
 from bluetooth.bluez import discover_devices
-# Return MAC address, if fail generate random string
+# Return MAC address, on fail generate random String
 from uuid import getnode as get_mac
-# Capped at 50,000 monthly requests, added error handling for slow response
+# Capped at 50,000 monthly requests
 import ipinfo
 from ipinfo import details
 from requests.exceptions import ConnectTimeout
@@ -17,11 +17,10 @@ from requests.exceptions import ConnectTimeout
 
 # Endpoint listing every scan result
 RESULTS_URL = 'https://raspberrybackend.herokuapp.com/results'
-# RESULTS_URL = 'http://localhost:8080/results'
+
 
 # Endpoint listing each individual Raspberry Pi
 RASPBERRIES_URL = 'https://raspberrybackend.herokuapp.com/api/raspberries'
-# RASPBERRIES_URL = 'http://localhost:8080/api/raspberries'
 
 
 def ble_scan():
@@ -30,17 +29,9 @@ def ble_scan():
     ble_devices = bluetooth.discover_devices(lookup_names=True)
     print('Devices found: %s' % len(ble_devices))
 
-    # Name, MAC address of each scanned device
+    # Name, MAC address of each scanned ble device
     for addr, name in ble_devices:
         print('name :', name, 'address :', addr)
-
-    # Append unique device, unnecessary?
-
-    # for item in ble_devices:
-    #     if item in ble_devices:
-    #         pass
-    #     else:
-    #         ble_devices.append(item)
 
     # Return current time
     ts = time.time()
@@ -52,27 +43,26 @@ def ble_scan():
     # Return MAC address of scan performing device
     # macaddress = get_mac()
 
-    # Return latitude, longitude of scan performing device, (details.all) for full response, includes error handling
+    # Return latitude, longitude of scan performing device
     while True:
         try:
-            access_token = '1a9c774186e4d2'  # Personal access token from ipinfo.io
+            access_token = '1a9c774186e4d2'
             handler = ipinfo.getHandler(access_token)
             ip_address = ''
             details = handler.getDetails(ip_address)
 
             break
         except ConnectTimeout:
-            print('Slow response, attempting reconnect...')
-            return True
+            pass
 
-    # Data in JSON format
+    # POST data in JSON format
     objToSend = {'location': hostname, 'foundDevices': len(
-        ble_devices), 'timestamp': readable, 'latitude': details.latitude, 'longitude': details.longitude}  # Timestamp not working
+        ble_devices), 'dateAdded': readable, 'timestamp': readable, 'latitude': details.latitude, 'longitude': details.longitude}
 
-    # List existing Raspberries
     data = getExistingRaspberries()
     locations = []
 
+    # Append existing raspberries to [location]
     i = 0
     while i < len(data):
         locations.append(data[i]['location'])
@@ -85,13 +75,14 @@ def ble_scan():
         send = requests.post(RESULTS_URL, json=objToSend)
 
     else:
-        print('New Raspberry Pi')
+        print('New Raspberry Pi, adding to database')
         send = requests.post(
             RASPBERRIES_URL, json=objToSend)
 
     print(send.text)
 
 
+# Get existing Raspberries
 def getExistingRaspberries():
     with urllib.request.urlopen(RASPBERRIES_URL) as response:
         return json.loads(response.read())

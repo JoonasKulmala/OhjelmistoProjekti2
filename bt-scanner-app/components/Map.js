@@ -1,54 +1,43 @@
-import MapView, { Callout, Circle, Marker } from 'react-native-maps'
+import MapView, { Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { pickPinColor, formattedDate } from '../utility'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import RadiusButton from './RadiusButton'
 import NumberMarker from './NumberMarker'
+import Search from './Search'
+import { mapStyle } from '../mapStyle'
+
+// Nämä arvot määrittävät "zoomin" kartassa
+// Arvon ollessa 0.001, zoomataan lähelle koordinaattien mukaista sijaintia
+
+const LAT_DELTA = 0.001
+const LON_DELTA = 0.001
 
 const Map = ({ locations, setSelectedLocation }) => {
   const [scanRadius, setScanRadius] = useState(false)
 
-  // Kartasta hieman selkeämpi
-  const mapStyle = [
-    {
-      "featureType": "administrative",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "transit",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    }
-  ]
+  // luodaan referenssi, joka annetaan propsina MapView komponentille
+  // Referenssin avulla päästään ainakin käsiksi komponentin metodeihin
+  // Alla olevassa funktiossa "animateToGivenLocation" käytetään komponentin funktiota
+  // "animateToRegion"
+
+  const mapRef = React.createRef()
+
+  // REST-rajapinnassa olevat latitude ja longitude ovat tyypiltään merkkijonoja,
+  // joten ne täytyy parsia liukuluvuiksi
+
+  const animateToGivenLocation = (latitude, longitude) => {
+    mapRef.current.animateToRegion({
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
+      latitudeDelta: LAT_DELTA,
+      longitudeDelta: LON_DELTA
+    }, 2000)
+  }
 
   return (
     <View>
       <MapView
+        ref={mapRef}
         style={styles.map}
         initialRegion={{
           latitude: 60.2997901,
@@ -60,11 +49,10 @@ const Map = ({ locations, setSelectedLocation }) => {
       >
         {/* Jos propsi locations ei ole tyhjä, renderöidään Markkerit karttaan.
         Jos taas on, ei renderöidä mitään (null) */}
-        {locations.length !== 0
-          ? locations.map(location => (
+        {locations.length !== 0 ? 
+          locations.map(location => (
             <View key={location.id}>
               <Marker 
-                // pinColor={pickPinColor(location.bt_devices.latest)}
                 coordinate={{
                   latitude: parseFloat(location.latitude),
                   longitude: parseFloat(location.longitude)
@@ -75,7 +63,7 @@ const Map = ({ locations, setSelectedLocation }) => {
                   location={location}
                 />
               </Marker>
-              {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
+              {/* Jos scanRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {scanRadius ?
                 <Circle 
                   fillColor='#62d255'
@@ -87,13 +75,18 @@ const Map = ({ locations, setSelectedLocation }) => {
                 />
                 : null}
             </View>
-            ))
-          : null}
+            )) : null}
       </MapView>
-      <RadiusButton 
+      {/* <RadiusButton 
         scanRadius={scanRadius} 
         setScanRadius={setScanRadius}
-      />
+      /> */}
+      <View style={styles.searchIcon}>
+        <Search 
+          locations={locations} 
+          animateToGivenLocation={animateToGivenLocation}
+        />
+      </View>
     </View>
   )
 }
@@ -106,6 +99,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '7%',
     left: '2%'
+  },
+  navigationButton: {
+    position: 'absolute',
+    top: '7%',
+    left: '75%'
+  },
+  searchIcon: {
+    position: 'absolute',
+    top: '1%',
+    left: '1%'
   }
 })
 

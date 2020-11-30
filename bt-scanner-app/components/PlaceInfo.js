@@ -8,35 +8,37 @@ import { formatTimestamp } from '../utility'
 
 export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
   if (!selectedLocation) return null
-  
-  const time = new Date().toISOString()
-  const barChartTestData = [5, 2, 3, 5, 7, 11, 2, 0]
 
-  // const xAxisData = [
-  //   {
-  //     time: '13',
-  //     devices: 4
-  //   },
-  //   {
-  //     time: '13:30',
-  //     devices: 6
-  //   },
-  //   {
-  //     time: '14',
-  //     devices: 2
-  //   },
-  //   {
-  //     time: '14:30',
-  //     devices: 1
-  //   },
-  //   {
-  //     time: '15',
-  //     devices: 5
-  //   },
-  // ]
+  // console.log(selectedLocation);
 
-  const xAxisData = selectedLocation.timeStamp
-  console.log(xAxisData)
+  const devices = selectedLocation.scan_results.map(scan => scan.devices)
+  // const barChartTestData = [5, 2, 3, 5, 7]
+
+  const xAxisData = [
+    {
+      time: '13',
+      devices: 4
+    },
+    {
+      time: '13:30',
+      devices: 6
+    },
+    {
+      time: '14',
+      devices: 2
+    },
+    {
+      time: '14:30',
+      devices: 1
+    },
+    {
+      time: '15',
+      devices: 5
+    },
+  ]
+
+  // const xAxisData = selectedLocation.timeStamp
+  // console.log(xAxisData)
 
   const Labels = ({ x, y, bandwidth, data }) => {
 
@@ -64,7 +66,6 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
     <View style={styles.container}>
       <Card style={styles.infoCard}>
         <View style={styles.top}>
-          {/* <Text testID="placeInfo_name">{place.name}</Text> */}
           <Text style={styles.locationName}>{selectedLocation.location}</Text>
           <Icon
             color="red"
@@ -72,17 +73,10 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
             onPress={() => setSelectedLocation(null)}
           />
         </View>
-        {/* <Text style={{ paddingBottom: 5 }}>{time}</Text> */}
-        
-        {/*<Text style={styles.scanHistory}>Scan history</Text>
-        <Text testID="latestScan">{formattedDate()} - {selectedLocation.bt_devices[0].latest}</Text>
-        <Text testID="previousScan">15:00 - {selectedLocation.bt_devices["15:00"]}</Text>
-        <Text>14:30 - {selectedLocation.bt_devices["14:30"]}</Text> */}
-        
         <BarChart
           xAccessor={({ item }) => item}
           style={{ height: 125 }} 
-          data={barChartTestData}
+          data={devices}
           svg={{ fill: '#55b957' }}
           contentInset={{ top: 20, bottom: 10 }}
         >
@@ -90,9 +84,10 @@ export default function PlaceInfo({ selectedLocation, setSelectedLocation }) {
         </BarChart>
         <XAxis 
           style={{ marginTop: 10 }}
-          data={xAxisData}
+          data={selectedLocation.scan_results}
           scale={scale.scaleBand}
-          formatLabel={(_, index) => formatTimestamp(xAxisData[index].timeStamp)}
+          // formatLabel={(_, index) => formatTimestamp(xAxisData[index].timeStamp)}
+          formatLabel={(_, index) => selectedLocation.scan_results[index].timestamp}
           svg={{ fontSize: 13, fill: 'black' }}
         />
       </Card>
@@ -117,8 +112,5 @@ const styles = StyleSheet.create({
   },
   scanHistory: {
     marginBottom: 5
-  }, 
-  icon: {
-    
   }
 })
