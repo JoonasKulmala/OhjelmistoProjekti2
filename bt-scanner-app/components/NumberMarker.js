@@ -4,10 +4,11 @@ import React from 'react'
 // TODO: Pystyisiköhän Markkerin kokoa muuttamaan zoomauksen mukaan ??
 
 export default function NumberMarker({ location }) {
+  console.log(location.scan_results);
   return (
     <View style={styles.container}>
       <View style={styles.bubble}>
-        <Text style={styles.number}>{location.foundDevices}</Text>
+        <Text style={styles.number}>{location.scan_results[location.scan_results.length - 1].devices}</Text>
       </View>
       <View style={styles.markerBottom}/>
     </View>

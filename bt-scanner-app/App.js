@@ -64,10 +64,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  radiusButton: {
-    position: 'absolute',
-    top: '10%',
-    left: '2%',
-    zIndex: 0
-  },
 });

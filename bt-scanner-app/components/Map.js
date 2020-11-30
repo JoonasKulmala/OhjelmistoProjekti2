@@ -49,8 +49,8 @@ const Map = ({ locations, setSelectedLocation }) => {
       >
         {/* Jos propsi locations ei ole tyhjä, renderöidään Markkerit karttaan.
         Jos taas on, ei renderöidä mitään (null) */}
-        {locations.length !== 0
-          ? locations.map(location => (
+        {locations.length !== 0 ? 
+          locations.map(location => (
             <View key={location.id}>
               <Marker 
                 coordinate={{
@@ -63,7 +63,7 @@ const Map = ({ locations, setSelectedLocation }) => {
                   location={location}
                 />
               </Marker>
-              {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
+              {/* Jos scanRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {scanRadius ?
                 <Circle 
                   fillColor='#62d255'
@@ -75,8 +75,7 @@ const Map = ({ locations, setSelectedLocation }) => {
                 />
                 : null}
             </View>
-            ))
-          : null}
+            )) : null}
       </MapView>
       {/* <RadiusButton 
         scanRadius={scanRadius} 
@@ -100,10 +99,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '7%',
     left: '2%'
-  },
-  search: {
-    position: 'absolute',
-    top: '25%'
   },
   navigationButton: {
     position: 'absolute',
