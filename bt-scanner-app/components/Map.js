@@ -1,7 +1,6 @@
 import MapView, { Circle, Marker } from 'react-native-maps'
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { pickPinColor, formattedDate } from '../utility'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import RadiusButton from './RadiusButton'
 import NumberMarker from './NumberMarker'
 import Search from './Search'
@@ -9,6 +8,7 @@ import { mapStyle } from '../mapStyle'
 
 // Nämä arvot määrittävät "zoomin" kartassa
 // Arvon ollessa 0.001, zoomataan lähelle koordinaattien mukaista sijaintia
+
 const LAT_DELTA = 0.001
 const LON_DELTA = 0.001
 
@@ -19,16 +19,8 @@ const Map = ({ locations, setSelectedLocation }) => {
   // Referenssin avulla päästään ainakin käsiksi komponentin metodeihin
   // Alla olevassa funktiossa "animateToGivenLocation" käytetään komponentin funktiota
   // "animateToRegion"
-  const mapRef = React.createRef()
 
-  // const toggleRadius = () => {
-  //   setShowRadius(!showRadius)
-  //   if (radiusButtonTitle === 'show radius') {
-  //     setRadiusButtonTitle('hide radius')
-  //   } else if (radiusButtonTitle === 'hide radius') {
-  //     setRadiusButtonTitle('show radius')
-  //   }
-  // }
+  const mapRef = React.createRef()
 
   // REST-rajapinnassa olevat latitude ja longitude ovat tyypiltään merkkijonoja,
   // joten ne täytyy parsia liukuluvuiksi
@@ -57,8 +49,8 @@ const Map = ({ locations, setSelectedLocation }) => {
       >
         {/* Jos propsi locations ei ole tyhjä, renderöidään Markkerit karttaan.
         Jos taas on, ei renderöidä mitään (null) */}
-        {locations.length !== 0
-          ? locations.map(location => (
+        {locations.length !== 0 ? 
+          locations.map(location => (
             <View key={location.id}>
               <Marker 
                 coordinate={{
@@ -71,7 +63,7 @@ const Map = ({ locations, setSelectedLocation }) => {
                   location={location}
                 />
               </Marker>
-              {/* Jos showRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
+              {/* Jos scanRadius true, renderöidään karttaan ympyrä Markkerin yhteyteen */}
               {scanRadius ?
                 <Circle 
                   fillColor='#62d255'
@@ -83,13 +75,12 @@ const Map = ({ locations, setSelectedLocation }) => {
                 />
                 : null}
             </View>
-            ))
-          : null}
+            )) : null}
       </MapView>
-      <RadiusButton 
+      {/* <RadiusButton 
         scanRadius={scanRadius} 
         setScanRadius={setScanRadius}
-      />
+      /> */}
       <View style={styles.searchIcon}>
         <Search 
           locations={locations} 
@@ -108,10 +99,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '7%',
     left: '2%'
-  },
-  search: {
-    position: 'absolute',
-    top: '25%'
   },
   navigationButton: {
     position: 'absolute',

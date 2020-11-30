@@ -2,77 +2,113 @@
   "places": [
     {
       "id": 2, 
-      "name": "Ateneum",
-      "location": {
-        "lat": 60.1701801,
-        "lon": 24.9419037
-      },
-      "bt_devices": [
-        { 
-          "latest": 55
+      "location": "Ateneum",
+      "latitude": "60.1701801",
+      "longitude": "24.9419037",
+      "scan_results": [
+        {
+          "timestamp": "13:00",
+          "devices": 5
         },
         {
-          "15:00": 107
+          "timestamp": "13:30",
+          "devices": 3
         },
         {
-          "14:30": 60
+          "timestamp": "14:00",
+          "devices": 7
+        },
+        {
+          "timestamp": "14:30",
+          "devices": 11
+        },
+        {
+          "timestamp": "15:00",
+          "devices": 9
         }
       ]
     },
     {
       "id": 3,
-      "name": "Narinkkatori",
-      "location": {
-        "lat": 60.1696367,
-        "lon": 24.9350034
-      },
-      "bt_devices": [
-        { 
-          "latest": 40
+      "location": "Narinkkatori",
+      "latitude": "60.1696367",
+      "longitude": "24.9350034",
+      "scan_results": [
+        {
+          "timestamp": "13:00",
+          "devices": 12
         },
         {
-          "15:00": 30
+          "timestamp": "13:30",
+          "devices": 11
         },
         {
-          "14:30": 33
+          "timestamp": "14:00",
+          "devices": 13
+        },
+        {
+          "timestamp": "14:30",
+          "devices": 15
+        },
+        {
+          "timestamp": "15:00",
+          "devices": 10
         }
       ]
     },
     {
       "id": 4,
-      "name": "Töölönlahden tapahtumapuisto",
-      "location": {
-        "lat": 60.174866,
-        "lon": 24.9331779
-      },
-      "bt_devices": [
-        { 
-          "latest": 6
+      "location": "Töölönlahden tapahtumapuisto",
+      "latitude": "60.174866",
+      "longitude": "24.9331779",
+      "scan_results": [
+        {
+          "timestamp": "13:00",
+          "devices": 2
         },
         {
-          "15:00": 7
+          "timestamp": "13:30",
+          "devices": 2
         },
         {
-          "14:30": 3
+          "timestamp": "14:00",
+          "devices": 1
+        },
+        {
+          "timestamp": "14:30",
+          "devices": 0
+        },
+        {
+          "timestamp": "15:00",
+          "devices": 4
         }
       ]
     },
     {
       "id": 5,
-      "name": "Kaisaniemen puisto",
-      "location": {
-        "lat": 60.173158,
-        "lon": 24.944242
-      },
-      "bt_devices": [
-        { 
-          "latest": 7
+      "location": "Kaisaniemen puisto",
+      "latitude": "60.173158",
+      "longitude": "24.944242",
+      "scan_results": [
+        {
+          "timestamp": "13:00",
+          "devices": 7
         },
         {
-          "15:00": 4
+          "timestamp": "13:30",
+          "devices": 10
         },
         {
-          "14:30": 9
+          "timestamp": "14:00",
+          "devices": 11
+        },
+        {
+          "timestamp": "14:30",
+          "devices": 6
+        },
+        {
+          "timestamp": "15:00",
+          "devices": 9
         }
       ]
     }
