@@ -1,6 +1,6 @@
 # Team IdeaaVailla - Ohjelmistoprojekti 2
-[![Website](https://img.shields.io/website?label=Spring&style=for-the-badge&url=https%3A%2F%2Fcodestackr.com)](https://spring.io/)
-[![Website](https://img.shields.io/static/v1?label=Bluetooth&message=<MESSAGE>&color=blue]
+[![Website](https://img.shields.io/static/v1?label=Spring&message=<MESSAGE>&color=brightgreen)](https://spring.io/)
+[![Website](https://img.shields.io/static/v1?label=Bluetooth&message=<MESSAGE>&color=blue](https://www.bluetooth.com/)
 
 [website]: 
 [twitter]:
