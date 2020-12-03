@@ -52,3 +52,15 @@ Tähän vielä jottain
     
 
 ### Node dependencies
+
+## Usage
+
+## Roadmap
+
+## Contributing
+
+## Acknowledgements
+
+## Licenses
+
+Distributed under the [MIT](https://choosealicense.com/licenses/mit/) license.
