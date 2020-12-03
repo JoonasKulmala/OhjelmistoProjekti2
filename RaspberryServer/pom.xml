@@ -21,26 +21,19 @@
 	</properties>
 
 	<dependencies>
-<<<<<<< HEAD
-
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-java8time</artifactId>
-=======
-	<dependency>
-	    <groupId>org.thymeleaf.extras</groupId>
-	    <artifactId>thymeleaf-extras-java8time</artifactId>
-	</dependency>
-	<dependency>
-		  <groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-security</artifactId>
->>>>>>> d3ce75842119e0da68a20e63eb4cdf63000c1876
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-<<<<<<< HEAD
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
@@ -48,13 +41,9 @@
 
 		<!-- <dependency> <groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> 
 			</dependency> -->
-=======
-		 <!--<dependency>
->>>>>>> 1cef87ed5b54e062baffd30a7ccf1c7a74d6c56c
-           	<groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>-->
->>>>>>> d3ce75842119e0da68a20e63eb4cdf63000c1876
+
+		<!--<dependency> <groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -78,15 +67,15 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-<<<<<<< HEAD
+
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-=======
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-          <scope>runtime</scope>
->>>>>>> d3ce75842119e0da68a20e63eb4cdf63000c1876
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
