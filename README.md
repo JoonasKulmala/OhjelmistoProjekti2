@@ -10,18 +10,37 @@
   	- [Python dependencies](#python-dependencies)
   	- [Node dependencies](#node-dependencies)
 
+## Dependencies
+
 ## About the Project
 
 The main motive for this project was to create a solution to fulfill the need to keep track of people located in different areas in Helsinki. We got this idea from an outside source which was a sort of partner during this Ohjelmistoprojekti 2 -course. They presented us a few ideas and thoughts and among them was a thought of keeping track of the traveller flows in different locations.
 
+Tähän vielä jottain
+
 
 ## Built With
 
+- Python
+- Spring Boot
+- React Native
+
 ## Getting Started
+  
 
 ### Prerequisites
 
-## Dependencies
+
+* npm 
+  ```sh
+  npm install npm@latest -g
+  ```
+* expo
+  ```sh
+  npm install --global expo-cli
+  ```
+* node.js
+
 
 ### Python dependencies
 
@@ -33,13 +52,3 @@ The main motive for this project was to create a solution to fulfill the need to
     
 
 ### Node dependencies
-
-## Usage
-
-## Roadmap
-
-## Contributing
-
-## Acknowledgements
-
-## Licenses
