@@ -10,8 +10,6 @@
   	- [Python dependencies](#python-dependencies)
   	- [Node dependencies](#node-dependencies)
 
-## Dependencies
-
 ## About the Project
 
 The main motive for this project was to create a solution to fulfill the need to keep track of people located in different areas in Helsinki. We got this idea from an outside source which was a sort of partner during this Ohjelmistoprojekti 2 -course. They presented us a few ideas and thoughts and among them was a thought of keeping track of the traveller flows in different locations.
@@ -23,6 +21,8 @@ The main motive for this project was to create a solution to fulfill the need to
 
 ### Prerequisites
 
+## Dependencies
+
 ### Python dependencies
 
     sudo apt install python-dev
@@ -33,3 +33,13 @@ The main motive for this project was to create a solution to fulfill the need to
     
 
 ### Node dependencies
+
+## Usage
+
+## Roadmap
+
+## Contributing
+
+## Acknowledgements
+
+## Licenses
