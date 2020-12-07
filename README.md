@@ -50,17 +50,30 @@ frontti
 
 ### Installation
 
-* Clone the repo
-```bash
-git clone https://github.com/lennikorhonen/OhjelmistoProjekti2.git
-```
+1. Clone the repo
+  ```bash
+  git clone https://github.com/lennikorhonen/OhjelmistoProjekti2.git
+  ```
 
-1. Install packages
+2. Navigate to bt-scanner-app directory
+  ```bash
+  cd Ohjelmistoprojekti2/bt-scanner-app/
+  ```
+
+3. Install packages
   ```bash
   npm install
   ```
-2. 
-3. ???
+  
+4. Start fake REST API
+  ```bash
+  npm run server
+  ```
+
+5. In another terminal, with Android emulator up and running, start Metro Bundler
+  ```bash
+  npm run android
+  ```
 
 ### Python dependencies
 
