@@ -38,7 +38,7 @@ Tähän vielä jottain
 
 ### Prerequisites
 
-frontti
+Fornt end/Mobile app
 
 * npm
   ```bash
@@ -93,11 +93,24 @@ frontti
 ### Node dependencies
 
 ## Usage
-
+### Backend endpoints
+```
+raspberrybackend.herokuapp.com/raspberrylist
+```
+```
+raspberrybackend.herokuapp.com/api
+raspberrybackend.herokuapp.com/api/raspberries
+raspberrybackend.herokuapp.com/api/timestamps
+raspberrybackend.herokuapp.com/api/results
+```
 ## Roadmap
 
 ## Contributing
-
+* [@JoonasKulmala](https://github.com/JoonasKulmala)
+* [@OttoKorhonen](https://github.com/OttoKorhonen)
+* [@LenniKorhonen](https://github.com/lennikorhonen)
+* [@AnnikaHaapalahti](https://github.com/rusinainen)
+* [@RoopeLaakso](https://github.com/Rohelaa)
 ## Acknowledgements
 
 ## Licenses
