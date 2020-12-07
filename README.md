@@ -18,6 +18,12 @@ The main motive for this project was to create a solution to fulfill the need to
 
 We bounced around a couple of ideas on how to build the solution. Eventually we decided to go with Bluetooth technology because it seemed to be the best way to get data on how many people approximately are in some specific location. 
 
+![](bt-scanner-app/images/Map.png)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![](bt-scanner-app/images/Location_card.png)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![](bt-scanner-app/images/List.png)
+
 Tähän vielä jottain
 
 
