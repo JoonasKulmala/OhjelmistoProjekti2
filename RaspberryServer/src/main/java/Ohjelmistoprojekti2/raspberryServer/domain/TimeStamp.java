@@ -66,11 +66,4 @@ public class TimeStamp {
 		return "Date [dateId=" + dateId + ", date=" + timeStamp + "]";
 	}
 
-//	public int getFoundDevices() {
-//		return foundDevices;
-//	}
-//
-//	public void setFoundDevices(int foundDevices) {
-//		this.foundDevices = foundDevices;
-//	}
 }

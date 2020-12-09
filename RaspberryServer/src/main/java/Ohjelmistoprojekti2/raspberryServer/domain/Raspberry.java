@@ -1,12 +1,9 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Raspberry {
