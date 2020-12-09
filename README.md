@@ -20,16 +20,17 @@ The main motive for this project was to create a solution to fulfill the need to
 
 We bounced around a couple of ideas on how to build the solution. Eventually we decided to go with Bluetooth technology because it seemed to be the best way to get data on how many people approximately are in a specific location. 
 
-To track devices in a specific location we used Raspberry Pi 3 
+To get the amount of devices sending Bluetooth data we used Raspberry Pi 3. It collects data of nearby devices that are using Bluetooth and then sends this data to the back-end. 
+
+We set up REST API to provide a straightforward way to access the collected data.
+
+We also built a simple mobile application - mainly to demonstrate how we had thought to use the collected data.  
 
 ![](bt-scanner-app/images/Map.png)
 &nbsp;&nbsp;&nbsp;&nbsp;
 ![](bt-scanner-app/images/Location_card.png)
 &nbsp;&nbsp;&nbsp;&nbsp;
 ![](bt-scanner-app/images/List.png)
-
-Tähän vielä jottain
-
 
 ## Built With
 
@@ -91,8 +92,6 @@ Front end/Mobile app
     pip3 install pybluez
     pip3 install schedule
     pip3 install ipinfo
-
-## Usage
 
 ### Getting started with backend
 Clone project from github
