@@ -1,17 +1,9 @@
 package Ohjelmistoprojekti2.raspberryServer.domain;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Raspberry {
@@ -24,10 +16,8 @@ public class Raspberry {
 	private String longitude;
 	private String imageUrl;
 	private String explanation;
-
-	@Column(name = "date")
-	@DateTimeFormat(pattern = "hh:mm:ss dd/mm/yyyy ")
-	private LocalDate date = LocalDate.now();
+	private String dateAdded;
+	private int foundDevices;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refDateRasp")
 	private List<TimeStamp> timeStamp;
@@ -36,18 +26,33 @@ public class Raspberry {
 		super();
 	}
 
-	public Raspberry(String location, String latitude, String longitude, String imageUrl, String explanation) {
-	}
-
-	public Raspberry(String location, String latitude, String longitude, String imageUrl, String explanation,
-			LocalDate date) {
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String explanation) {
 		super();
 		this.location = location;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imageUrl = imageUrl;
 		this.explanation = explanation;
-		this.date = date;
+	}
+
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl,
+			String explanation) {
+		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
+		this.explanation = explanation;
+	}
+
+	// konstruktori, jossa otettu mukaan imageUrl-attribuutti
+	public Raspberry(String location, int foundDevices, String latitude, String longitude, String imageUrl,
+			String explanation, String dateAdded) {
+		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.imageUrl = imageUrl;
+		this.explanation = explanation;
+		this.dateAdded = dateAdded;
 	}
 
 	public Long getId() {
@@ -98,12 +103,28 @@ public class Raspberry {
 		this.explanation = explanation;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public String getDateAdded() {
+		return dateAdded;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDateAdded(String dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
+	public int getFoundDevices() {
+		return foundDevices;
+	}
+
+	public void setFoundDevices(int foundDevices) {
+		this.foundDevices = foundDevices;
+	}
+
+	public String getDate() {
+		return dateAdded;
+	}
+
+	public void setDate(String dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 
 	public List<TimeStamp> getTimeStamp() {

@@ -13,6 +13,7 @@
 	<h1>Adding new Raspberry</h1>
 	<form th:object="${raspberry}" th:action="@{save}" action="#" method="post">
 		  <table>
+		  <input type="reset" value="Reset">
 			<tr>
 				<td><label for="location">Location: </label></td>
 				<td><input type="text" id="location" th:field="*{location}" class="form-control"/></td>
@@ -43,12 +44,18 @@
 				<td th:if="${#fields.hasErrors('explanation')}" th:errors="*{explanation}">Error</td>
 			</tr>
 			<tr>
-				<td><label for="timeStamp">Date: </label></td>
-				<td><input type="date" id="timeStamp" th:field="*{timeStamp}" class="form-control"/></td>
+				<td><label for="dateAdded">Date: </label></td>
+				<td><input type="text" id="dateAdded" th:field="*{dateAdded}" class="form-control"/></td>
+				<td th:if="${#fields.hasErrors('dateAdded')}" th:errors="*{dateAdded}">Error</td>
 			</tr>
-			
+			<tr>
+				<td><label for="timeStamp">TimeStamp: </label></td>
+				<td><input type="array" id="timeStamp" th:field="*{timeStamp}" class="form-control"/></td>
+			</tr>
+			</table>
 			<div style="clear: both; display: block; height: 10px;"> 
-			<input type="submit" value="Save">
+			<input type="submit" value="Save" class="btn btn-success">
+			
 		</form>
     
 </body>

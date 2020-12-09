@@ -7,13 +7,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="col-md-12">
+<div class="jumbotron text-center">
 	<h1>List of Raspberries</h1>
 	</div>
 	<div class="col-md-4">
@@ -24,34 +24,33 @@
 		<button type ="submit" value="Sign Out" sec:authorize="isAuthenticated()" class="btn btn-danger">Sign out</button>
 			<!--  <input type="submit" value="Sign Out" sec:authorize="isAuthenticated()"/>-->
 		</form>
-		<form th:action="@{/login}" method="post">
-		<button type ="submit" value="Sign in" sec:authorize="!isAuthenticated()" class="btn btn-success">Sign in</button>
-			<!--  <input type="submit" value="Sign in" sec:authorize="!isAuthenticated()"/>-->
-		</form>
+		
 	</div>
 	<table class="table table-hover">
 		<tr>
 			<th>Location:</th>
-			<th>Found devices:</th>
+		<!--	<th>Found devices:</th> -->
 			<th>Latitude:</th>
 			<th>Longitude:</th>
 			<th>ImageUrl:</th>
 			<th>Explanation:</th>
 			<th>Date added:</th>
-			<th>Activity</th>
+			<th>Activity:</th>
+			<th>Found devices: </th>
 			<th sec:authorize="hasRole('ADMIN')"> </th>
 		</tr>
 
 		<tr th:each="raspberry : ${raspberries}">
 			<!-- <td  th:text="${raspberry.id}"></td> -->
 			<td th:text="${raspberry.location}"></td>
-			<td th:text="${raspberry.foundDevices}"></td>
+		<!--	<td th:text="${raspberry.foundDevices}"></td> -->
 			<td th:text="${raspberry.latitude}"></td>
 			<td th:text="${raspberry.longitude}"></td>
 			<td th:text="${raspberry.imageUrl}"></td>
 			<td th:text="${raspberry.explanation}"></td>
 			<td th:text="${raspberry.date}"></td>
 			<td th:text="${raspberry.timeStamp}"></td>
+			<td th:text="${raspberry.foundDevices}"></td> 
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${raspberry.id})}">Delete</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${raspberry.id})}">Edit</a></td>
 		</tr>
