@@ -5,5 +5,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "off"
 }

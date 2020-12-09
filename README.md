@@ -4,19 +4,23 @@
 
 ## Table of contents
 
-- [Team IdeaaVailla](#team-ideaavailla)
-  - [Table of contents](#table-of-contents)
-  - [Dependencies](#dependencies)
-  	- [Python dependencies](#python-dependencies)
-  	- [Node dependencies](#node-dependencies)
-
-## Dependencies
+- [Table of contents](#table-of-contents)
+- [About the project](#about-the-project)
+- [Built With](#build-with)
+- [Getting Started](#)getting-started
+  - [Prerequisities](#prerequisities)
+  - [Installation](#installation)
+- [Dependencies](#dependencies)
+  - [Python dependencies](#python-dependencies)
+  - [Node dependencies](#node-dependencies)
 
 ## About the Project
 
 The main motive for this project was to create a solution to fulfill the need to keep track of people located in different areas in Helsinki. We got this idea from an outside source which was a sort of partner during this Ohjelmistoprojekti 2 -course. They presented us a few ideas and thoughts and among them was a thought of keeping track of the traveller flows in Helsinki. This need of getting data about people present in different locations seemed to be a good fit for this course and that's why we ended up sticking with it. 
 
-We bounced around a couple of ideas on how to build the solution. Eventually we decided to go with Bluetooth technology because it seemed to be the best way to get data on how many people approximately are in some specific location. 
+We bounced around a couple of ideas on how to build the solution. Eventually we decided to go with Bluetooth technology because it seemed to be the best way to get data on how many people approximately are in a specific location. 
+
+To track devices in a specific location we used Raspberry Pi 3 
 
 ![](bt-scanner-app/images/Map.png)
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,7 +42,7 @@ Tähän vielä jottain
 
 ### Prerequisites
 
-Fornt end/Mobile app
+Front end/Mobile app
 
 * npm
   ```bash
@@ -50,9 +54,8 @@ Fornt end/Mobile app
   ```
 * node.js
   ```bash
+  download the latest LTS version: https://nodejs.org/en/download/
   ```
-  
-  bäkki???
 
 ### Installation
 
@@ -88,30 +91,57 @@ Fornt end/Mobile app
     pip3 install pybluez
     pip3 install schedule
     pip3 install ipinfo
-    
-
-### Node dependencies
 
 ## Usage
+
+### Getting started with backend
+Clone project from github
+```
+https://github.com/lennikorhonen/OhjelmistoProjekti2
+```
+Import application as Maven Project in IDE
+To run application locally:
+Go to Application class and run as Java application
+```
+/OhjelmistoProjekti2/RaspberryServer/src/main/java/Ohjelmistoprojekti2/raspberryServer RaspberryServerAppliction.java
+```
+
+### Backend documentation
+This application is written in Java programming language. In order to run this project you need Java version 8 or newer installed.
+
+
 ### Backend endpoints
+Fetching events for Admin panel
 ```
 raspberrybackend.herokuapp.com/raspberrylist
 ```
+Getting all /api endpoints
 ```
 raspberrybackend.herokuapp.com/api
+```
+For fetching every existing raspberry pi from database
+```
 raspberrybackend.herokuapp.com/api/raspberries
-raspberrybackend.herokuapp.com/api/timestamps
+```
+For fetching all the results
+```
 raspberrybackend.herokuapp.com/api/results
 ```
 ## Roadmap
 
+As of 10.12.2020, project development is halted and further support is discontinued.
+
 ## Contributing
+
 * [@JoonasKulmala](https://github.com/JoonasKulmala)
 * [@OttoKorhonen](https://github.com/OttoKorhonen)
 * [@LenniKorhonen](https://github.com/lennikorhonen)
 * [@AnnikaHaapalahti](https://github.com/rusinainen)
 * [@RoopeLaakso](https://github.com/Rohelaa)
+
 ## Acknowledgements
+
+Thanks to Helsinki Marketing for presenting us with their API & providing ideas...?
 
 ## Licenses
 
