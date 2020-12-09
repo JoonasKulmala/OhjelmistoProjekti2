@@ -7,7 +7,7 @@
 - [Table of contents](#table-of-contents)
 - [About the project](#about-the-project)
 - [Built With](#build-with)
-- [Getting Started](#)getting-started
+- [Getting Started](#getting-started)
   - [Prerequisities](#prerequisities)
   - [Installation](#installation)
 - [Dependencies](#dependencies)
