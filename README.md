@@ -11,14 +11,14 @@
 		- [Prerequisities](#prerequisities)
 		- [Installation](#installation)
 	- [Backend](#backend)
-		- [Prerequisities](#)
+		- [Prerequisities](#prerequisities)
 		- [Installation](#installation)
 		- [Endpoints](#endpoints)
 	- [Python script](#python-script)
 		- [Prerequisities](#prerequisities)
 		- [Installation](#installation)
 - [Roadmap](#roadmap)
-- [Contributing](#contributing)
+- [Contributors](#contributors)
 - [Acknowledgements](#acknowledgements)
 - [Licences](#licences)
 
@@ -48,7 +48,7 @@ We also built a simple mobile application - mainly to demonstrate how we had tho
 
 ## Getting Started
 
-### Frontend  
+### Frontend  `./bt-scanner-app`
 
 #### Prerequisites
 
@@ -94,7 +94,7 @@ Front end/Mobile app
   npm run android
   ```
 
-### Backend
+### Backend `./RaspberryServer`
 
 #### Prerequisities
 
@@ -131,9 +131,9 @@ For fetching all the results
 raspberrybackend.herokuapp.com/api/results
 ```
 
-### Python script
+### Python script `./python_bt`
 
-#### Prerequisities
+**Python 3.0** is required. Newest LTS is recommended.
 
 #### Installation
 
@@ -157,8 +157,8 @@ As of 10.12.2020, project development is currently halted and further support is
 
 ## Acknowledgements
 
-We'd like to thank **Helsinki Marketing** for providing their API and interest in this project.
+We'd like to thank **Helsinki Marketing** for providing their API and support.
 
-## Licenses
+## Licences
 
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) license.
