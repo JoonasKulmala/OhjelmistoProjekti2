@@ -23,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
+		.csrf().disable() //Considering enabling and creating a workaround
 		.authorizeRequests().antMatchers("/css/**","/api/raspberries","/results").permitAll()
 		.antMatchers("/", "/results").permitAll()//kuka tahansa käyttäjä voi nähdä results-sivun
         .and()
