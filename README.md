@@ -94,7 +94,6 @@ Front end/Mobile app
   ```bash
   npm run android
   ```
-  < /br>
 
 ### Backend
 `./RaspberryServer`
@@ -116,27 +115,38 @@ and run `RaspberryServerAppliction.java` as Java Application to start the server
 
 #### Endpoints
 
-Default path is /api
-
-Fetch login page with GET request
-
-Fetching events for Admin panel
+Fetch login page using `GET` request:
 ```
-raspberrybackend.herokuapp.com/raspberrylist
+http://localhost:8080/login
 ```
-Getting all /api endpoints
+Fetch events for Admin panel using `GET` Request:
 ```
-raspberrybackend.herokuapp.com/api
+http://localhost:8080/raspberrylist
 ```
-For fetching every existing raspberry pi from database
+Default path listing API endpoints using `GET` request:
 ```
-raspberrybackend.herokuapp.com/api/raspberries
+http://localhost:8080/login
 ```
-For fetching all the results
+Fetch saved Raspberry Pi devices using `GET` request:
 ```
-raspberrybackend.herokuapp.com/api/results
+http://localhost:8080/api/raspberries
 ```
-< /br>
+Fetch a single saved Raspberry Pi by {location] using `GET` request:
+```
+http://localhost:8080/api/raspberries/{location}
+```
+Fetch saved scan results using `GET` request:
+```
+http://localhost:8080/api/results
+```
+Save new Raspberry Pi into database using `POST` request:
+```
+http://localhost:8080/api/raspberries
+```
+Save new scan result of existing Raspberry Pi using `POST` request:
+```
+http://localhost:8080/api/results
+```
 
 ### Python script
 `./python_bt`
@@ -144,6 +154,10 @@ raspberrybackend.herokuapp.com/api/results
 **Python 3.0** is required. Newest LTS is recommended.
 
 #### Installation
+
+`Pip install -r requirements.txt`
+
+Failing, you can install dependencies one by one:
 
     sudo apt install python-dev
     sudo apt install libbluetooth-dev
