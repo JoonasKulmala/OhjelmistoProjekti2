@@ -13,7 +13,7 @@
 	- [Backend](#backend)
 		- [Prerequisities](#prerequisities)
 		- [Installation](#installation)
-		- [Endpoints](#endpoints)
+		- [API Endpoints](#api-endpoints)
 	- [Python script](#python-script)
 		- [Prerequisities](#prerequisities)
 		- [Installation](#installation)
@@ -48,7 +48,8 @@ We also built a simple mobile application - mainly to demonstrate how we had tho
 
 ## Getting Started
 
-### Frontend  `./bt-scanner-app`
+### Frontend
+`./bt-scanner-app`
 
 #### Prerequisites
 
@@ -93,27 +94,32 @@ Front end/Mobile app
   ```bash
   npm run android
   ```
+  < /br>
 
-### Backend `./RaspberryServer`
+### Backend
+`./RaspberryServer`
 
 #### Prerequisities
 
-Clone project from github
+**Java 8** is required.	
+
+Clone the full repository OR only the backend directory:
 ```
-https://github.com/lennikorhonen/OhjelmistoProjekti2
+https://github.com/lennikorhonen/OhjelmistoProjekti2/RaspberryServer
 ```
-Import application as Maven Project in IDE
-To run application locally:
-Go to Application class and run as Java application
+Import as existing Maven Project, then navigate to:
 ```
-/OhjelmistoProjekti2/RaspberryServer/src/main/java/Ohjelmistoprojekti2/raspberryServer RaspberryServerAppliction.java
+/OhjelmistoProjekti2/RaspberryServer/src/main/java/Ohjelmistoprojekti2/raspberryServer
 ```
 
-#### Documentation
-This application is written in Java programming language. In order to run this project you need Java version 8 or newer installed.
-
+and run `RaspberryServerAppliction.java` as Java Application to start the server in localhost `port: 8080`.
 
 #### Endpoints
+
+Default path is /api
+
+Fetch login page with GET request
+
 Fetching events for Admin panel
 ```
 raspberrybackend.herokuapp.com/raspberrylist
@@ -130,8 +136,10 @@ For fetching all the results
 ```
 raspberrybackend.herokuapp.com/api/results
 ```
+< /br>
 
-### Python script `./python_bt`
+### Python script
+`./python_bt`
 
 **Python 3.0** is required. Newest LTS is recommended.
 
@@ -145,9 +153,9 @@ raspberrybackend.herokuapp.com/api/results
     
 ## Roadmap
 
-As of 10.12.2020, project development is currently halted and further support is discontinued.
+As of 10.12.2020, project development is currently halted and further support discontinued.
 
-## Contributing
+## Contributors
 
 * [@JoonasKulmala](https://github.com/JoonasKulmala)
 * [@OttoKorhonen](https://github.com/OttoKorhonen)
