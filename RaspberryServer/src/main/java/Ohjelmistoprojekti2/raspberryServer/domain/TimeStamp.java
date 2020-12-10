@@ -12,6 +12,7 @@ public class TimeStamp {
 	private Long dateId;
 	private String timeStamp;
 	private int foundDevices;
+	//private int foundDevices;
 
 	@JsonBackReference
 	@ManyToOne
@@ -64,4 +65,5 @@ public class TimeStamp {
 	public String toString() {
 		return "Date [dateId=" + dateId + ", date=" + timeStamp + "]";
 	}
+
 }

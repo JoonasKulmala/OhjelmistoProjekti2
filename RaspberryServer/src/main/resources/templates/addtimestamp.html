@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add timestamp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add Time Stamp</h1>
+	<div>
+		<form th:object="${timeStamp}" th:action="@{savetimeStamp}" action="#" method="post">
+		  	<label for="timeStamp">TimeStamp</label>
+			<input type="text" id="timeStamp" th:field="*{timeStamp}" />		
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

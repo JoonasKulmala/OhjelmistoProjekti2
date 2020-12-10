@@ -11,12 +11,15 @@
 <body>
 	<h1>Edit</h1>
 	<form action="#" th:action="@{/save}" th:object=${raspberry} method="post">
-	<p><input type="hidden" th:field="${raspberry.id}" /></p>
+	<p><input type="hidden" th:field="${raspberry.id}" class="form-control"/></p>
 	<p Location: <input type="text" th:field="${raspberry.location}" class="form-control"/></p>
-	<p Found devices: <input type="text" th:field="${raspberry.foundDevices}" class="form-control"/></p>
+	<!--<p Found devices: <input type="hidden" th:field="${raspberry.foundDevices}" class="form-control"/></p>-->
 	<p Latitude: <input type="text" th:field="${raspberry.latitude}" class="form-control"/></p>
 	<p Longitude: <input type="text" th:field="${raspberry.longitude}" class="form-control"/></p>
-	<p Image: <input type="text" th:field="${raspberry.imageUrl}" class="form-control"/></p>
+	<p ImageUrl: <input type="text" th:field="${raspberry.imageUrl}" class="form-control"/></p>
+	<p Explanation: <input type="text" th:field="${raspberry.explanation}" class="form-control"/></p>
+	<p Date added: <input type="text" th:field="${raspberry.dateAdded}" class="form-control"/></p>
+	<p Devices: <input type="hidden" th:field="${raspberry.foundDevices}" class="form-control"/></p>
 	<label for="timeStamp">TimeStamp:</label>
 		<select id="timeStamp" th:field="*{timeStamp}" class="form-control"> 
        		<option th:each="timeStamp: ${timeStamps}" th:value="${timaStamp.dateId}" th:text="${timeStamp.dateId}"></option>
