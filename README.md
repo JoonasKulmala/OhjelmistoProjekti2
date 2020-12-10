@@ -4,17 +4,25 @@
 
 ## Table of contents
 
-- [Table of contents](#table-of-contents)
-- [About the project](#about-the-project)
-- [Built With](#build-with)
-- [Getting Started](#getting-started)
-  - [Prerequisities](#prerequisities)
-  - [Installation](#installation)
-- [Dependencies](#dependencies)
-  - [Python dependencies](#python-dependencies)
-  - [Node dependencies](#node-dependencies)
+- [Project description](#project-description)
+- [Built with](#built-with)
+- [Getting started](#getting-started)
+	- [Frontend](#frontend)
+		- [Prerequisities](#prerequisities)
+		- [Installation](#installation)
+	- [Backend](#backend)
+		- [Prerequisities](#)
+		- [Installation](#installation)
+		- [Endpoints](#endpoints)
+	- [Python script](#python-script)
+		- [Prerequisities](#prerequisities)
+		- [Installation](#installation)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [Licences](#licences)
 
-## About the Project
+## Project description
 
 The main motive for this project was to create a solution to fulfill the need to keep track of people located in different areas in Helsinki. We got this idea from an outside source which was a sort of partner during this Ohjelmistoprojekti 2 -course. They presented us a few ideas and thoughts and among them was a thought of keeping track of the traveller flows in Helsinki. This need of getting data about people present in different locations seemed to be a good fit for this course and that's why we ended up sticking with it. 
 
@@ -34,14 +42,15 @@ We also built a simple mobile application - mainly to demonstrate how we had tho
 
 ## Built With
 
-* Python
-* Spring Boot
 * React Native
+* Java
+* Python
 
 ## Getting Started
-  
 
-### Prerequisites
+### Frontend  
+
+#### Prerequisites
 
 Front end/Mobile app
 
@@ -58,7 +67,7 @@ Front end/Mobile app
   download the latest LTS version: https://nodejs.org/en/download/
   ```
 
-### Installation
+#### Installation
 
 1. Clone the repo
   ```bash
@@ -85,15 +94,10 @@ Front end/Mobile app
   npm run android
   ```
 
-### Python dependencies
+### Backend
 
-    sudo apt install python-dev
-    sudo apt install libbluetooth-dev
-    pip3 install pybluez
-    pip3 install schedule
-    pip3 install ipinfo
+#### Prerequisities
 
-### Getting started with backend
 Clone project from github
 ```
 https://github.com/lennikorhonen/OhjelmistoProjekti2
@@ -105,11 +109,11 @@ Go to Application class and run as Java application
 /OhjelmistoProjekti2/RaspberryServer/src/main/java/Ohjelmistoprojekti2/raspberryServer RaspberryServerAppliction.java
 ```
 
-### Backend documentation
+#### Documentation
 This application is written in Java programming language. In order to run this project you need Java version 8 or newer installed.
 
 
-### Backend endpoints
+#### Endpoints
 Fetching events for Admin panel
 ```
 raspberrybackend.herokuapp.com/raspberrylist
@@ -126,9 +130,22 @@ For fetching all the results
 ```
 raspberrybackend.herokuapp.com/api/results
 ```
+
+### Python script
+
+#### Prerequisities
+
+#### Installation
+
+    sudo apt install python-dev
+    sudo apt install libbluetooth-dev
+    pip3 install pybluez
+    pip3 install schedule
+    pip3 install ipinfo
+    
 ## Roadmap
 
-As of 10.12.2020, project development is halted and further support is discontinued.
+As of 10.12.2020, project development is currently halted and further support is discontinued.
 
 ## Contributing
 
@@ -140,7 +157,7 @@ As of 10.12.2020, project development is halted and further support is discontin
 
 ## Acknowledgements
 
-Thanks to Helsinki Marketing for presenting us with their API & providing ideas...?
+We'd like to thank **Helsinki Marketing** for providing their API and interest in this project.
 
 ## Licenses
 
